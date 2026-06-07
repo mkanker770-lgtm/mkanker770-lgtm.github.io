@@ -88,9 +88,8 @@
 
     const builds = [
       { name: "Shift 4060", image: "build-4060.jpg", tag: "1080p", price: "$799+", specs: ["RTX 4060", "Ryzen 5 7600", "16GB DDR5", "1TB NVMe"] },
-      { name: "Pulse 5060 Ti", image: "build-5060ti.jpg", tag: "1440p", price: "$1,099+", specs: ["RTX 5060 Ti", "Ryzen 5 9600X", "32GB DDR5", "240mm AIO"] },
-      { name: "Surge 5070", image: "build-5070.jpg", tag: "High FPS", price: "$1,499+", specs: ["RTX 5070", "Ryzen 7 9700X", "32GB DDR5", "2TB NVMe"] },
-      { name: "Apex 4080", image: "build-4080.jpg", tag: "4K", price: "$2,299+", specs: ["RTX 4080", "Ryzen 7 9800X3D", "64GB DDR5", "360mm AIO"] }
+      { name: "Core 3060 Ti", image: "build-3060ti.jpg", tag: "Budget FPS", price: "$699+", specs: ["RTX 3060 Ti", "Ryzen 5 5600X", "16GB DDR4", "1TB NVMe"] },
+      { name: "Surge 5070", image: "build-5070.jpg", tag: "High FPS", price: "$1,499+", specs: ["RTX 5070", "Ryzen 7 9700X", "32GB DDR5", "2TB NVMe"] }
     ];
 
     const payments = [["P", "PayPal"], ["CC", "Credit/Debit"], ["A", "Apple Pay"], ["G", "Google Pay"], ["K", "Klarna"]];
@@ -198,7 +197,7 @@
         <PageShell
           eyebrow="Workstations"
           title="Performance systems for more than gaming."
-          aside={<aside className="glass rounded-2xl bg-[url('build-4080.jpg')] bg-cover bg-center p-6 shadow-premium"><div className="rounded-2xl border border-white/15 bg-slate-950/70 p-5 backdrop-blur-xl"><h3 className="text-2xl font-black">Apex 4080</h3><p className="mt-3 text-slate-300">4K gaming, creator work, and heavy multitasking from $2,299+.</p></div></aside>}
+          aside={<aside className="glass rounded-2xl bg-[url('build-5070.jpg')] bg-cover bg-center p-6 shadow-premium"><div className="rounded-2xl border border-white/15 bg-slate-950/70 p-5 backdrop-blur-xl"><h3 className="text-2xl font-black">Surge 5070</h3><p className="mt-3 text-slate-300">High-FPS gaming, creator work, and heavy multitasking from $1,499+.</p></div></aside>}
         >
           <div className="grid gap-4 md:grid-cols-3">
             {cards.map(([title, copy], index) => <article className="glass rounded-2xl p-6" key={title}><div className="mb-5 grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-electric to-violet font-black text-slate-950">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-300">{copy}</p></article>)}
