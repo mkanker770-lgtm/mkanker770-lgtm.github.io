@@ -87,9 +87,9 @@
     const navItems = ["Home", "Gaming PCs", "Workstations", "Reviews", "FAQ", "Order"];
 
     const builds = [
-      { name: "Shift 4060", image: "build-4060.jpg", tag: "1080p", price: "$799+", specs: ["RTX 4060", "Ryzen 5 7600", "16GB DDR5", "1TB NVMe"] },
-      { name: "Core 3060 Ti", image: "build-3060ti.jpg", tag: "Budget FPS", price: "$699+", specs: ["RTX 3060 Ti", "Ryzen 5 5600X", "16GB DDR4", "1TB NVMe"] },
-      { name: "Surge 5070", image: "build-5070.jpg", tag: "High FPS", price: "$1,499+", specs: ["RTX 5070", "Ryzen 7 9700X", "32GB DDR5", "2TB NVMe"] }
+      { name: "Shift 4060", image: "build-4060.jpg", tag: "1080p", price: "$500", specs: ["RTX 4060", "Ryzen 5 7600", "16GB DDR5", "1TB NVMe"] },
+      { name: "Core 3060 Ti", image: "build-3060ti.jpg", tag: "Budget FPS", price: "$350", specs: ["RTX 3060 Ti", "Ryzen 5 5600X", "16GB DDR4", "1TB NVMe"] },
+      { name: "Surge 5070", image: "build-5070.jpg", tag: "High FPS", price: "$699", specs: ["RTX 5070", "Ryzen 7 9700X", "32GB DDR5", "2TB NVMe"] }
     ];
 
     const payments = [["P", "PayPal"], ["CC", "Credit/Debit"], ["A", "Apple Pay"], ["G", "Google Pay"], ["K", "Klarna"]];
@@ -165,7 +165,7 @@
               <img className="aspect-[4/3] w-full object-cover" src="build-5070.jpg" alt="Premium custom gaming PC" />
               <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-4 rounded-2xl border border-white/15 bg-slate-950/75 p-4 backdrop-blur-2xl">
                 <div><b className="block">Surge 5070</b><span className="text-sm text-slate-400">High-FPS 1440p platform</span></div>
-                <div className="text-2xl font-black">$1,499+</div>
+                <div className="text-2xl font-black">$699</div>
               </div>
             </div>
           </div>
@@ -197,7 +197,7 @@
         <PageShell
           eyebrow="Workstations"
           title="Performance systems for more than gaming."
-          aside={<aside className="glass rounded-2xl bg-[url('build-5070.jpg')] bg-cover bg-center p-6 shadow-premium"><div className="rounded-2xl border border-white/15 bg-slate-950/70 p-5 backdrop-blur-xl"><h3 className="text-2xl font-black">Surge 5070</h3><p className="mt-3 text-slate-300">High-FPS gaming, creator work, and heavy multitasking from $1,499+.</p></div></aside>}
+          aside={<aside className="glass rounded-2xl bg-[url('build-5070.jpg')] bg-cover bg-center p-6 shadow-premium"><div className="rounded-2xl border border-white/15 bg-slate-950/70 p-5 backdrop-blur-xl"><h3 className="text-2xl font-black">Surge 5070</h3><p className="mt-3 text-slate-300">High-FPS gaming, creator work, and heavy multitasking from $699.</p></div></aside>}
         >
           <div className="grid gap-4 md:grid-cols-3">
             {cards.map(([title, copy], index) => <article className="glass rounded-2xl p-6" key={title}><div className="mb-5 grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-electric to-violet font-black text-slate-950">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-300">{copy}</p></article>)}
