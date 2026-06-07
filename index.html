@@ -92,7 +92,7 @@
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
     const { useMemo, useState } = React;
-    const discordUrl = "https://discord.gg/PqZz6Qrdr";
+    const discordUrl = "https://discord.gg/zcx4DSzdT";
     const trustpilotUrl = "https://www.trustpilot.com/review/mkanker770-lgtm.github.io";
 
     const navItems = ["Home", "Gaming PCs", "Workstations", "Reviews", "FAQ", "Order"];
@@ -155,7 +155,11 @@
     function Home({ setActive }) {
       return (
         <div className="view-enter view-scroll grid h-full min-h-0 items-center gap-8 overflow-y-auto pb-28 pr-1 lg:grid-cols-[.95fr_1.05fr] lg:pb-0">
-          <div>
+          <div className="glass rounded-2xl p-6 shadow-premium md:p-8">
+            <div className="mb-5 flex flex-wrap items-center gap-2">
+              <span className="rounded-full border border-line bg-slate-950/60 px-3 py-1.5 text-xs font-black uppercase tracking-[0.14em] text-slate-300">BuildOS 2026</span>
+              <span className="rounded-full bg-cyan-200 px-3 py-1.5 text-xs font-black text-slate-950">Quote ready</span>
+            </div>
             <div className="mb-5 inline-flex rounded-full border border-line bg-slate-900/70 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyan-100">Premium custom systems</div>
             <h1 className="max-w-4xl text-5xl font-black leading-[.86] tracking-normal md:text-7xl xl:text-8xl">Custom Gaming PCs Built For You</h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">Professionally assembled, stress-tested, tuned, and supported. Frameshift PCs builds premium systems that arrive clean, stable, and ready for gaming or creative work.</p>
@@ -356,8 +360,10 @@
             </nav>
           </header>
           <main className="min-h-0 flex-1 overflow-hidden">
-            <div className="mx-auto h-full w-[min(1240px,calc(100%-32px))] py-5 md:py-7">
-              {page}
+            <div className="mx-auto h-full w-[min(1260px,calc(100%-24px))] py-3 md:py-5">
+              <div className="mantine-panel h-full rounded-2xl p-3 md:p-5">
+                {page}
+              </div>
             </div>
           </main>
         </div>
