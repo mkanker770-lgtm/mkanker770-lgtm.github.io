@@ -87,9 +87,9 @@
     const navItems = ["Home", "Gaming PCs", "Workstations", "Reviews", "FAQ", "Order"];
 
     const builds = [
-      { name: "Shift 4060", image: "build-4060.jpg", tag: "1080p", price: "$500", specs: ["RTX 4060", "Ryzen 5 7600", "16GB DDR5", "1TB NVMe"] },
-      { name: "Core 3060 Ti", image: "build-3060ti.jpg", tag: "Budget FPS", price: "$350", specs: ["RTX 3060 Ti", "Ryzen 5 5600X", "16GB DDR4", "1TB NVMe"] },
-      { name: "Surge 5070", image: "build-5070.jpg", tag: "High FPS", price: "$699", specs: ["RTX 5070", "Ryzen 7 9700X", "32GB DDR5", "2TB NVMe"] }
+      { name: "Shift 4060", image: "build-4060.png", tag: "1080p", price: "$500", specs: ["RTX 4060", "Ryzen 5 7600", "16GB DDR5", "1TB NVMe"] },
+      { name: "Core 3060 Ti", image: "build-3060ti.png", tag: "Budget FPS", price: "$350", specs: ["RTX 3060 Ti", "Ryzen 5 5600X", "16GB DDR4", "1TB NVMe"] },
+      { name: "Surge 5070", image: "build-5070.png", tag: "High FPS", price: "$699", specs: ["RTX 5070", "Ryzen 7 9700X", "32GB DDR5", "2TB NVMe"] }
     ];
 
     const payments = [["S", "Stripe"], ["₿", "Crypto"]];
@@ -162,7 +162,7 @@
           <div className="relative hidden min-h-[520px] lg:block">
             <div className="absolute inset-8 rounded-full bg-violet/20 blur-3xl"></div>
             <div className="floaty glass relative mx-auto max-w-[660px] overflow-hidden rounded-2xl shadow-premium">
-              <img className="aspect-[4/3] w-full object-cover" src="build-5070.jpg" alt="Premium custom gaming PC" />
+            <img className="aspect-[4/3] w-full object-cover" src="build-5070.png" alt="Premium custom gaming PC" />
               <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-4 rounded-2xl border border-white/15 bg-slate-950/75 p-4 backdrop-blur-2xl">
                 <div><b className="block">Surge 5070</b><span className="text-sm text-slate-400">High-FPS 1440p platform</span></div>
                 <div className="text-2xl font-black">$699</div>
@@ -178,7 +178,7 @@
         <PageShell
           eyebrow="Gaming PCs"
           title="Featured builds in clean performance tiers."
-          aside={<aside className="glass hidden rounded-2xl p-6 lg:block"><h3 className="text-2xl font-black">Configure, then quote.</h3><p className="mt-4 leading-7 text-slate-300">Start from one of these systems, then adjust the look, budget, storage, cooling, and deadline before final pricing.</p><div className="mt-6"><Button onClick={() => setActive("Order")}>Get a Quote</Button></div></aside>}
+          aside={<aside className="glass hidden rounded-2xl p-6 lg:block"><div className="mb-4 rounded-xl border border-white/10 bg-white/10 p-4"><div className="text-sm font-black uppercase tracking-[0.14em] text-cyan-200">Quote engine</div><div className="mt-2 text-3xl font-black">3 build lanes</div></div><h3 className="text-2xl font-black">Choose a tier, then customize.</h3><p className="mt-4 leading-7 text-slate-300">Start from 3060 Ti, 4060, or 5070. We tune the quote around your games, color theme, delivery, and payment method.</p><div className="mt-6"><Button onClick={() => setActive("Order")}>Build My Quote</Button></div></aside>}
         >
           <div className="grid max-h-[calc(100vh-250px)] gap-4 overflow-hidden md:grid-cols-2 xl:grid-cols-4">
             {builds.map((build) => <BuildCard build={build} key={build.name} />)}
@@ -197,7 +197,7 @@
         <PageShell
           eyebrow="Workstations"
           title="Performance systems for more than gaming."
-          aside={<aside className="glass rounded-2xl bg-[url('build-5070.jpg')] bg-cover bg-center p-6 shadow-premium"><div className="rounded-2xl border border-white/15 bg-slate-950/70 p-5 backdrop-blur-xl"><h3 className="text-2xl font-black">Surge 5070</h3><p className="mt-3 text-slate-300">High-FPS gaming, creator work, and heavy multitasking from $699.</p></div></aside>}
+          aside={<aside className="glass rounded-2xl bg-[url('build-5070.png')] bg-cover bg-center p-6 shadow-premium"><div className="rounded-2xl border border-white/15 bg-slate-950/70 p-5 backdrop-blur-xl"><h3 className="text-2xl font-black">Surge 5070</h3><p className="mt-3 text-slate-300">High-FPS gaming, creator work, and heavy multitasking from $699.</p></div></aside>}
         >
           <div className="grid gap-4 md:grid-cols-3">
             {cards.map(([title, copy], index) => <article className="glass rounded-2xl p-6" key={title}><div className="mb-5 grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-electric to-violet font-black text-slate-950">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-300">{copy}</p></article>)}
@@ -240,14 +240,22 @@
     }
 
     function Order() {
+      const quoteSteps = [
+        ["01", "Pick a lane", "3060 Ti, 4060, or 5070"],
+        ["02", "Send details", "Games, budget, theme, deadline"],
+        ["03", "Lock quote", "Stripe or crypto payment"]
+      ];
       return (
         <PageShell
           eyebrow="Order"
-          title="Get a custom quote without guessing parts."
-          aside={<aside className="glass rounded-2xl p-6"><h3 className="text-2xl font-black">Quote template</h3><p className="mt-4 font-mono text-sm leading-7 text-slate-300">Budget: $____<br />Main games: ____<br />Resolution: 1080p / 1440p / 4K<br />Theme: ____<br />Wi-Fi needed: yes / no<br />Deadline: ____</p></aside>}
+          title="Get a clean quote in minutes."
+          aside={<aside className="glass rounded-2xl p-6"><div className="mb-4 inline-flex rounded-full bg-cyan-200 px-3 py-1 text-xs font-black uppercase tracking-[0.12em] text-slate-950">Copy into Discord</div><h3 className="text-2xl font-black">Quote template</h3><p className="mt-4 font-mono text-sm leading-7 text-slate-300">Build: 3060 Ti / 4060 / 5070<br />Budget: $____<br />Main games: ____<br />Resolution: 1080p / 1440p / 4K<br />Theme: ____<br />Payment: Stripe / Crypto<br />Deadline: ____</p></aside>}
         >
-          <p className="max-w-3xl text-lg leading-8 text-slate-300">Send your budget, games, resolution, theme, Wi-Fi needs, and deadline. We will help you choose the right tier and confirm a final parts list.</p>
-          <div className="mt-8 flex flex-wrap gap-3"><Button href={discordUrl}>Join Discord</Button><Button href={trustpilotUrl} variant="secondary">Review Us</Button></div>
+          <p className="max-w-3xl text-lg leading-8 text-slate-300">Tell us the tier you want, your games, and your budget. We will send back a clean parts plan with the final total, payment method, and delivery expectations.</p>
+          <div className="mt-7 grid gap-3 md:grid-cols-3">
+            {quoteSteps.map(([num, title, copy]) => <div className="glass rounded-2xl p-5" key={title}><div className="mb-4 grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-electric to-violet text-sm font-black text-slate-950">{num}</div><h3 className="text-lg font-black">{title}</h3><p className="mt-2 text-sm leading-6 text-slate-300">{copy}</p></div>)}
+          </div>
+          <div className="mt-8 flex flex-wrap gap-3"><Button href={discordUrl}>Start Quote</Button><Button href={trustpilotUrl} variant="secondary">Review Us</Button></div>
           <div className="mt-8 grid gap-3 sm:grid-cols-3">{indicators.map(([title, copy]) => <div className="glass rounded-2xl p-4" key={title}><b>{title}</b><span className="mt-1 block text-sm text-slate-400">{copy}</span></div>)}</div>
         </PageShell>
       );
