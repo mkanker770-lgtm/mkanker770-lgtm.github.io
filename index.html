@@ -11,853 +11,365 @@
       f.parentNode.insertBefore(a,f)})(window,document,'script', 'https://invitejs.trustpilot.com/tp.min.js', 'tp');
     tp('register', 'JHJK3xlip3jKmJl7');
   </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#f8fbff",
+            frost: "rgba(255,255,255,0.09)",
+            line: "rgba(255,255,255,0.12)",
+            electric: "#39c7ff",
+            violet: "#9f67ff",
+            trust: "#00b67a"
+          },
+          boxShadow: {
+            glow: "0 26px 90px rgba(57,199,255,0.18)",
+            premium: "0 30px 120px rgba(0,0,0,0.45)"
+          }
+        }
+      }
+    };
+  </script>
   <style>
-    :root {
-      color-scheme: dark;
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      --bg: #05060a;
-      --ink: #f8fbff;
-      --muted: #b9c2d3;
-      --line: rgba(255,255,255,.12);
-      --glass: rgba(18, 22, 33, .62);
-      --glass-strong: rgba(23, 28, 42, .82);
-      --purple: #9f67ff;
-      --blue: #39c7ff;
-      --green: #00b67a;
-      --gold: #f6c96b;
-    }
-
-    * { box-sizing: border-box; }
-
     html { scroll-behavior: smooth; }
-
     body {
-      margin: 0;
-      min-height: 100vh;
       background:
-        radial-gradient(circle at 18% -10%, rgba(57,199,255,.22), transparent 34rem),
-        radial-gradient(circle at 86% 4%, rgba(159,103,255,.28), transparent 36rem),
-        linear-gradient(180deg, #080a10 0%, var(--bg) 38%, #080a10 100%);
-      color: var(--ink);
+        radial-gradient(circle at 18% -10%, rgba(57,199,255,.24), transparent 34rem),
+        radial-gradient(circle at 88% 0%, rgba(159,103,255,.32), transparent 36rem),
+        linear-gradient(180deg, #070911 0%, #05060a 46%, #090b12 100%);
     }
-
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      pointer-events: none;
       z-index: -1;
+      pointer-events: none;
       background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+        linear-gradient(rgba(255,255,255,.034) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.034) 1px, transparent 1px);
       background-size: 56px 56px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.75), transparent 72%);
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.8), transparent 72%);
     }
-
-    img { display: block; max-width: 100%; }
-    a { color: inherit; text-decoration: none; }
-
-    .wrap {
-      width: min(1200px, calc(100% - 36px));
-      margin: 0 auto;
+    .glass {
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.095), rgba(255,255,255,.045));
+      backdrop-filter: blur(20px);
     }
-
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      background: rgba(5,6,10,.76);
-      backdrop-filter: blur(22px);
-    }
-
-    .nav {
-      min-height: 78px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 22px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-weight: 950;
-      letter-spacing: 0;
-      white-space: nowrap;
-    }
-
-    .brand img {
-      width: 44px;
-      height: 44px;
-      object-fit: contain;
-      filter: drop-shadow(0 0 18px rgba(159,103,255,.8));
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      color: #d8dfeb;
-      font-size: .95rem;
-      font-weight: 800;
-    }
-
-    .nav-links a {
-      padding: 10px 12px;
-      border-radius: 8px;
-      transition: background .18s ease, color .18s ease;
-    }
-
-    .nav-links a:hover {
-      color: white;
-      background: rgba(255,255,255,.08);
-    }
-
-    .nav-cta {
-      display: flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 18px;
-      border-radius: 8px;
-      border: 1px solid transparent;
-      font-weight: 950;
-      white-space: nowrap;
-      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
-    }
-
-    .button:hover {
-      transform: translateY(-1px);
-    }
-
-    .button.primary {
-      color: #061019;
-      background: linear-gradient(135deg, #fff, #8be6ff 42%, #b98cff 100%);
-      box-shadow: 0 18px 48px rgba(57,199,255,.2);
-    }
-
-    .button.secondary {
-      color: var(--ink);
-      border-color: var(--line);
-      background: rgba(255,255,255,.075);
-    }
-
-    .hero {
-      position: relative;
-      min-height: calc(100vh - 78px);
-      display: grid;
-      grid-template-columns: minmax(0, .96fr) minmax(320px, 1.04fr);
-      align-items: center;
-      gap: 46px;
-      padding: 74px 0 48px;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      min-height: 34px;
-      padding: 0 12px;
-      border: 1px solid rgba(159,103,255,.35);
-      border-radius: 999px;
-      background: rgba(159,103,255,.12);
-      color: #ded1ff;
-      font-size: .78rem;
-      font-weight: 950;
-      letter-spacing: .11em;
-      text-transform: uppercase;
-    }
-
-    h1, h2, h3, p { margin-top: 0; }
-
-    h1 {
-      margin-bottom: 0;
-      max-width: 11ch;
-      font-size: clamp(3.6rem, 9.5vw, 8.4rem);
-      line-height: .86;
-      letter-spacing: 0;
-    }
-
-    .hero h1 { margin-top: 18px; }
-
-    .lead {
-      max-width: 62ch;
-      margin: 26px 0 0;
-      color: #d4dbe8;
-      font-size: 1.16rem;
-      line-height: 1.75;
-    }
-
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 30px;
-    }
-
-    .hero-media {
-      position: relative;
-      min-height: 560px;
-      display: grid;
-      place-items: center;
-    }
-
-    .product-frame {
-      position: relative;
-      width: min(100%, 610px);
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--glass);
-      box-shadow: 0 36px 120px rgba(0,0,0,.5), 0 0 90px rgba(159,103,255,.16);
-      transform: perspective(1000px) rotateY(-7deg) rotateX(3deg);
+    .hero-pc {
+      transform: perspective(1200px) rotateY(-7deg) rotateX(3deg);
       animation: float 6s ease-in-out infinite;
     }
-
     @keyframes float {
       0%, 100% { translate: 0 0; }
-      50% { translate: 0 -10px; }
+      50% { translate: 0 -12px; }
     }
-
-    .product-frame img {
-      width: 100%;
-      aspect-ratio: 4 / 3;
-      object-fit: cover;
+    .reveal {
+      animation: reveal .72s ease both;
     }
-
-    .product-overlay {
-      position: absolute;
-      inset: auto 16px 16px;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      align-items: center;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 8px;
-      padding: 14px;
-      background: rgba(5,6,10,.72);
-      backdrop-filter: blur(18px);
-    }
-
-    .product-overlay strong { display: block; }
-    .product-overlay span { display: block; color: var(--muted); font-size: .9rem; margin-top: 4px; }
-
-    .trust-strip {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 12px;
-      margin-top: 38px;
-    }
-
-    .trust-badge,
-    .glass-card,
-    .build-card,
-    .review-card,
-    .faq-item {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--glass);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 20px 70px rgba(0,0,0,.22);
-    }
-
-    .trust-badge {
-      padding: 16px;
-      min-height: 86px;
-    }
-
-    .trust-badge strong {
-      display: block;
-      font-size: 1.04rem;
-      margin-bottom: 6px;
-    }
-
-    .trust-badge span {
-      color: var(--muted);
-      font-size: .9rem;
-    }
-
-    .payments {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 22px;
-    }
-
-    .pay {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      min-height: 40px;
-      padding: 0 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(255,255,255,.13);
-      background: rgba(255,255,255,.07);
-      color: #e8edf6;
-      font-weight: 850;
-      font-size: .92rem;
-    }
-
-    .pay-mark {
-      display: grid;
-      place-items: center;
-      width: 24px;
-      height: 24px;
-      border-radius: 50%;
-      color: #071019;
-      background: linear-gradient(135deg, var(--blue), var(--purple));
-      font-size: .78rem;
-      font-weight: 950;
-    }
-
-    section {
-      padding: 94px 0;
-    }
-
-    .section-head {
-      display: flex;
-      align-items: end;
-      justify-content: space-between;
-      gap: 28px;
-      margin-bottom: 28px;
-    }
-
-    h2 {
-      margin-bottom: 0;
-      font-size: clamp(2.35rem, 5vw, 4.6rem);
-      line-height: .92;
-      letter-spacing: 0;
-    }
-
-    .muted {
-      color: var(--muted);
-      line-height: 1.68;
-    }
-
-    .section-head .muted {
-      max-width: 58ch;
-      margin-bottom: 0;
-    }
-
-    .build-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .build-card {
-      overflow: hidden;
-      background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.045));
-    }
-
-    .build-card figure {
-      margin: 0;
-      aspect-ratio: 16 / 11;
-      overflow: hidden;
-      background: #10131b;
-    }
-
-    .build-card img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .28s ease;
-    }
-
-    .build-card:hover img { transform: scale(1.035); }
-
-    .build-body { padding: 18px; }
-
-    .build-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: start;
-      gap: 12px;
-      margin-bottom: 12px;
-    }
-
-    h3 {
-      margin-bottom: 0;
-      font-size: 1.2rem;
-      line-height: 1.15;
-    }
-
-    .price {
-      color: white;
-      font-weight: 950;
-      white-space: nowrap;
-    }
-
-    .specs {
-      display: grid;
-      gap: 8px;
-      list-style: none;
-      padding: 0;
-      margin: 16px 0 0;
-      color: #dde5f1;
-      font-size: .93rem;
-    }
-
-    .specs li {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-
-    .specs b {
-      color: white;
-      font-weight: 900;
-      text-align: right;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      min-height: 28px;
-      padding: 0 10px;
-      border-radius: 999px;
-      color: #061019;
-      background: linear-gradient(135deg, #effbff, #83e5ff);
-      font-size: .78rem;
-      font-weight: 950;
-    }
-
-    .why-grid,
-    .process-grid,
-    .faq-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 14px;
-    }
-
-    .glass-card,
-    .faq-item {
-      padding: 24px;
-    }
-
-    .icon-box {
-      display: grid;
-      place-items: center;
-      width: 44px;
-      height: 44px;
-      border-radius: 8px;
-      margin-bottom: 20px;
-      color: #061019;
-      background: linear-gradient(135deg, var(--blue), var(--purple));
-      font-weight: 950;
-    }
-
-    .review-layout,
-    .community {
-      display: grid;
-      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
-      gap: 14px;
-      align-items: stretch;
-    }
-
-    .review-card {
-      padding: 26px;
-    }
-
-    .stars {
-      display: flex;
-      gap: 4px;
-      margin: 14px 0 18px;
-    }
-
-    .stars span {
-      display: grid;
-      place-items: center;
-      width: 30px;
-      height: 30px;
-      border-radius: 4px;
-      background: var(--green);
-      color: white;
-      font-weight: 950;
-    }
-
-    .quote {
-      color: #e8edf6;
-      font-size: 1.08rem;
-      line-height: 1.72;
-    }
-
-    .review-meta {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 20px;
-      color: #d2d9e6;
-      font-size: .9rem;
-    }
-
-    .pill {
-      border-radius: 999px;
-      padding: 7px 10px;
-      background: rgba(255,255,255,.08);
-    }
-
-    .showcase {
-      min-height: 100%;
-      border-radius: 8px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background:
-        linear-gradient(180deg, rgba(5,6,10,.08), rgba(5,6,10,.8)),
-        url("build-4080.jpg") center / cover;
-      display: flex;
-      align-items: end;
-      padding: 24px;
-    }
-
-    .showcase-card {
-      width: 100%;
-      border: 1px solid rgba(255,255,255,.14);
-      border-radius: 8px;
-      padding: 18px;
-      background: rgba(5,6,10,.72);
-      backdrop-filter: blur(18px);
-    }
-
-    .faq-item h3 { margin-bottom: 10px; }
-
-    .community {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background:
-        linear-gradient(90deg, rgba(5,6,10,.92), rgba(5,6,10,.52)),
-        url("build-5070.jpg") center / cover;
-      overflow: hidden;
-      padding: clamp(26px, 5vw, 48px);
-    }
-
-    .community .glass-card {
-      background: rgba(5,6,10,.72);
-      min-height: 100%;
-    }
-
-    footer {
-      border-top: 1px solid rgba(255,255,255,.08);
-      color: #9fa9bb;
-      padding: 34px 0;
-      text-align: center;
-    }
-
-    @media (max-width: 1060px) {
-      .nav { align-items: flex-start; flex-direction: column; padding: 14px 0; }
-      .nav-links { flex-wrap: wrap; }
-      .hero,
-      .review-layout,
-      .community { grid-template-columns: 1fr; }
-      .hero-media { min-height: 430px; order: -1; }
-      .trust-strip,
-      .build-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .why-grid,
-      .process-grid,
-      .faq-grid { grid-template-columns: 1fr; }
-    }
-
-    @media (max-width: 700px) {
-      .wrap { width: min(100% - 28px, 1200px); }
-      .nav-cta { width: 100%; flex-wrap: wrap; }
-      .nav-cta .button { flex: 1; }
-      h1 { font-size: clamp(3.15rem, 16vw, 4.8rem); }
-      .hero { padding-top: 36px; }
-      .hero-media { min-height: 300px; }
-      .product-frame { transform: none; }
-      .section-head { display: block; }
-      .section-head .muted { margin-top: 14px; }
-      .trust-strip,
-      .build-grid { grid-template-columns: 1fr; }
+    @keyframes reveal {
+      from { opacity: 0; transform: translateY(18px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
-<body>
-  <header class="site-header">
-    <nav class="nav wrap" aria-label="Main navigation">
-      <a class="brand" href="#home" aria-label="Frameshift PCs home">
-        <img src="frameshift-logo.png" alt="Frameshift PCs logo">
-        <span>Frameshift PCs</span>
-      </a>
-      <div class="nav-links">
-        <a href="#home">Home</a>
-        <a href="#gaming-pcs">Gaming PCs</a>
-        <a href="#workstations">Workstations</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#faq">FAQ</a>
-        <a href="#order">Order</a>
-      </div>
-      <div class="nav-cta">
-        <a class="button secondary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Join Discord</a>
-        <a class="button primary" href="#order">Get a Quote</a>
-      </div>
-    </nav>
-  </header>
+<body class="text-ink antialiased">
+  <div id="root"></div>
 
-  <main id="home">
-    <section class="hero wrap">
-      <div>
-        <div class="eyebrow">Premium custom systems</div>
-        <h1>Custom Gaming PCs Built For You</h1>
-        <p class="lead">
-          Every Frameshift PC is professionally assembled, stress-tested, tuned,
-          and supported so your system arrives clean, stable, and ready to play.
-        </p>
-        <div class="actions">
-          <a class="button primary" href="#order">Get a Quote</a>
-          <a class="button secondary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Join Discord</a>
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel">
+    const discordUrl = "https://discord.gg/PqZz6Qrdr";
+    const trustpilotUrl = "https://www.trustpilot.com/review/mkanker770-lgtm.github.io";
+
+    const builds = [
+      {
+        name: "Shift 4060",
+        image: "build-4060.jpg",
+        tag: "1080p",
+        price: "$799+",
+        subtitle: "Smooth competitive gaming",
+        specs: ["RTX 4060", "Ryzen 5 7600", "16GB DDR5", "1TB NVMe"]
+      },
+      {
+        name: "Pulse 5060 Ti",
+        image: "build-5060ti.jpg",
+        tag: "1440p",
+        price: "$1,099+",
+        subtitle: "Balanced next-gen performance",
+        specs: ["RTX 5060 Ti", "Ryzen 5 9600X", "32GB DDR5", "240mm AIO"]
+      },
+      {
+        name: "Surge 5070",
+        image: "build-5070.jpg",
+        tag: "High FPS",
+        price: "$1,499+",
+        subtitle: "High-refresh gaming and streaming",
+        specs: ["RTX 5070", "Ryzen 7 9700X", "32GB DDR5", "2TB NVMe"]
+      },
+      {
+        name: "Apex 4080",
+        image: "build-4080.jpg",
+        tag: "4K",
+        price: "$2,299+",
+        subtitle: "Ultra settings and creator work",
+        specs: ["RTX 4080", "Ryzen 7 9800X3D", "64GB DDR5", "360mm AIO"]
+      }
+    ];
+
+    const trustBadges = [
+      ["5/5 Reviews", "Public feedback through Trustpilot."],
+      ["Secure Payments", "Cards, wallets, PayPal, and transfer."],
+      ["Warranty Included", "Clear support terms before purchase."],
+      ["Stress Tested", "Thermals and stability checked."]
+    ];
+
+    const payments = [
+      ["P", "PayPal"],
+      ["CC", "Credit/Debit Cards"],
+      ["A", "Apple Pay"],
+      ["G", "Google Pay"],
+      ["K", "Klarna"],
+      ["B", "Bank Transfer"]
+    ];
+
+    const why = [
+      ["01", "Built Around You", "Every quote starts with your budget, games, resolution, design taste, and upgrade plans."],
+      ["02", "Professional Assembly", "Clean cable routing, smart airflow, careful part matching, and a finished showroom look."],
+      ["03", "Tested Before Delivery", "Systems are checked for stability, thermals, and real-world readiness before handoff."]
+    ];
+
+    const faqs = [
+      ["Are prices final?", "Listed prices are starting points. Your quote confirms the exact total based on parts, shipping, and options."],
+      ["Can I choose the look?", "Yes. Black, white, RGB, stealth, premium glass, creator, and budget-focused themes can all be discussed."],
+      ["How do I order?", "Click Get a Quote, send your build info, and we will help you choose the right tier before payment."]
+    ];
+
+    function Button({ href, children, variant = "primary" }) {
+      const base = "inline-flex min-h-12 items-center justify-center rounded-lg px-5 text-sm font-black transition hover:-translate-y-0.5";
+      const styles = variant === "primary"
+        ? "bg-gradient-to-br from-white via-electric to-violet text-slate-950 shadow-glow"
+        : "border border-line bg-white/10 text-white hover:bg-white/15";
+      return <a className={`${base} ${styles}`} href={href}>{children}</a>;
+    }
+
+    function SectionHeader({ eyebrow, title, children }) {
+      return (
+        <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <div>
+            <div className="mb-3 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">{eyebrow}</div>
+            <h2 className="max-w-3xl text-4xl font-black leading-[0.95] tracking-normal md:text-6xl">{title}</h2>
+          </div>
+          {children && <p className="max-w-xl text-base leading-7 text-slate-300">{children}</p>}
         </div>
-        <div class="trust-strip" aria-label="Trust badges">
-          <div class="trust-badge"><strong>5 Star Reviews</strong><span>Customer feedback matters.</span></div>
-          <div class="trust-badge"><strong>Secure Payments</strong><span>Flexible checkout options.</span></div>
-          <div class="trust-badge"><strong>Worldwide Shipping</strong><span>Quote-based delivery.</span></div>
-          <div class="trust-badge"><strong>Warranty Included</strong><span>Support after delivery.</span></div>
-        </div>
-        <div class="payments" aria-label="Accepted payment methods">
-          <span class="pay"><span class="pay-mark">P</span>PayPal</span>
-          <span class="pay"><span class="pay-mark">CC</span>Credit/Debit Cards</span>
-          <span class="pay"><span class="pay-mark">A</span>Apple Pay</span>
-          <span class="pay"><span class="pay-mark">G</span>Google Pay</span>
-          <span class="pay"><span class="pay-mark">K</span>Klarna</span>
-          <span class="pay"><span class="pay-mark">B</span>Bank Transfer</span>
-        </div>
-      </div>
-      <div class="hero-media" aria-label="Featured custom PC">
-        <div class="product-frame">
-          <img src="build-5070.jpg" alt="Premium liquid cooled custom gaming PC">
-          <div class="product-overlay">
-            <div>
-              <strong>Surge 5070</strong>
-              <span>1440p high FPS build</span>
+      );
+    }
+
+    function BuildCard({ build }) {
+      return (
+        <article className="glass group overflow-hidden rounded-xl shadow-premium">
+          <div className="aspect-[16/11] overflow-hidden bg-slate-950">
+            <img className="h-full w-full object-cover transition duration-500 group-hover:scale-105" src={build.image} alt={`${build.name} custom PC`} loading="lazy" />
+          </div>
+          <div className="p-5">
+            <div className="mb-4 flex items-start justify-between gap-3">
+              <div>
+                <h3 className="text-xl font-black">{build.name}</h3>
+                <p className="mt-1 text-sm text-slate-400">{build.subtitle}</p>
+              </div>
+              <span className="rounded-full bg-cyan-200 px-3 py-1 text-xs font-black text-slate-950">{build.tag}</span>
             </div>
-            <div class="price">$1,499+</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="gaming-pcs" class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Featured Builds</div>
-          <h2>Performance tiers for every setup.</h2>
-        </div>
-        <p class="muted">
-          Starting prices help you pick a lane. Final quotes depend on parts,
-          availability, shipping, color theme, and upgrade choices.
-        </p>
-      </div>
-      <div class="build-grid">
-        <article class="build-card">
-          <figure><img src="build-4060.jpg" alt="RTX 4060 gaming PC build" loading="lazy"></figure>
-          <div class="build-body">
-            <div class="build-top"><h3>Shift 4060</h3><span class="chip">1080p</span></div>
-            <div class="price">$799+</div>
-            <ul class="specs">
-              <li><span>GPU</span><b>RTX 4060</b></li>
-              <li><span>CPU</span><b>Ryzen 5 7600</b></li>
-              <li><span>Memory</span><b>16GB DDR5</b></li>
-              <li><span>Storage</span><b>1TB NVMe</b></li>
+            <div className="mb-4 text-3xl font-black">{build.price}</div>
+            <ul className="grid gap-2 text-sm text-slate-300">
+              {build.specs.map((spec) => (
+                <li className="flex items-center justify-between border-b border-white/10 pb-2" key={spec}>
+                  <span>Included</span><b className="text-right text-white">{spec}</b>
+                </li>
+              ))}
             </ul>
+            <Button href="#order" variant="secondary">Configure Build</Button>
           </div>
         </article>
-        <article class="build-card">
-          <figure><img src="build-5060ti.jpg" alt="RTX 5060 Ti gaming PC build" loading="lazy"></figure>
-          <div class="build-body">
-            <div class="build-top"><h3>Pulse 5060 Ti</h3><span class="chip">1440p</span></div>
-            <div class="price">$1,099+</div>
-            <ul class="specs">
-              <li><span>GPU</span><b>RTX 5060 Ti</b></li>
-              <li><span>CPU</span><b>Ryzen 5 9600X</b></li>
-              <li><span>Memory</span><b>32GB DDR5</b></li>
-              <li><span>Cooling</span><b>240mm AIO</b></li>
-            </ul>
-          </div>
-        </article>
-        <article class="build-card">
-          <figure><img src="build-5070.jpg" alt="RTX 5070 gaming PC build" loading="lazy"></figure>
-          <div class="build-body">
-            <div class="build-top"><h3>Surge 5070</h3><span class="chip">High FPS</span></div>
-            <div class="price">$1,499+</div>
-            <ul class="specs">
-              <li><span>GPU</span><b>RTX 5070</b></li>
-              <li><span>CPU</span><b>Ryzen 7 9700X</b></li>
-              <li><span>Memory</span><b>32GB DDR5</b></li>
-              <li><span>Storage</span><b>2TB NVMe</b></li>
-            </ul>
-          </div>
-        </article>
-        <article class="build-card">
-          <figure><img src="build-4080.jpg" alt="RTX 4080 gaming PC build" loading="lazy"></figure>
-          <div class="build-body">
-            <div class="build-top"><h3>Apex 4080</h3><span class="chip">4K</span></div>
-            <div class="price">$2,299+</div>
-            <ul class="specs">
-              <li><span>GPU</span><b>RTX 4080</b></li>
-              <li><span>CPU</span><b>Ryzen 7 9800X3D</b></li>
-              <li><span>Memory</span><b>64GB DDR5</b></li>
-              <li><span>Cooling</span><b>360mm AIO</b></li>
-            </ul>
-          </div>
-        </article>
-      </div>
-    </section>
+      );
+    }
 
-    <section id="workstations" class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Why Choose Us</div>
-          <h2>Premium service from quote to delivery.</h2>
-        </div>
-        <p class="muted">
-          Frameshift PCs is built around clear communication, professional
-          assembly, clean cable work, and dependable post-sale support.
-        </p>
-      </div>
-      <div class="why-grid">
-        <article class="glass-card">
-          <div class="icon-box">01</div>
-          <h3>Professionally Assembled</h3>
-          <p class="muted">Parts are installed cleanly with careful routing, airflow, and upgrade space in mind.</p>
-        </article>
-        <article class="glass-card">
-          <div class="icon-box">02</div>
-          <h3>Stress Tested</h3>
-          <p class="muted">Systems are checked for stability, thermals, and real-world readiness before delivery.</p>
-        </article>
-        <article class="glass-card">
-          <div class="icon-box">03</div>
-          <h3>Supported After Sale</h3>
-          <p class="muted">Get help through Discord for setup questions, troubleshooting, and upgrade planning.</p>
-        </article>
-      </div>
-    </section>
+    function App() {
+      return (
+        <>
+          <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/70 backdrop-blur-2xl">
+            <nav className="mx-auto flex min-h-20 w-[min(1200px,calc(100%-36px))] flex-col gap-4 py-4 lg:flex-row lg:items-center lg:justify-between">
+              <a className="flex items-center gap-3 font-black" href="#home">
+                <img className="h-11 w-11 object-contain drop-shadow-[0_0_18px_rgba(159,103,255,.8)]" src="frameshift-logo.png" alt="Frameshift PCs logo" />
+                <span>Frameshift PCs</span>
+              </a>
+              <div className="flex flex-wrap items-center gap-1 text-sm font-bold text-slate-300">
+                {["Home", "Gaming PCs", "Workstations", "Reviews", "FAQ", "Order"].map((item) => (
+                  <a className="rounded-lg px-3 py-2 hover:bg-white/10 hover:text-white" href={`#${item.toLowerCase().replace(" ", "-")}`} key={item}>{item}</a>
+                ))}
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Button href="#order">Get a Quote</Button>
+                <Button href={discordUrl} variant="secondary">Join Discord</Button>
+              </div>
+            </nav>
+          </header>
 
-    <section id="reviews" class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Customer Reviews</div>
-          <h2>Built to earn trust.</h2>
-        </div>
-        <a class="button primary" href="https://www.trustpilot.com/review/mkanker770-lgtm.github.io" target="_blank" rel="noopener">Write a Trustpilot Review</a>
-      </div>
-      <div class="review-layout">
-        <article class="review-card">
-          <strong>Don</strong>
-          <div class="stars" aria-label="5 out of 5 stars">
-            <span>*</span><span>*</span><span>*</span><span>*</span><span>*</span>
-          </div>
-          <h3>Fast and Reliable!</h3>
-          <p class="quote">
-            Ordered a custom PC through Frameshift on Discord and it arrived
-            super fast! Build was perfect and ready to go right out of the box.
-            Highly recommend for anyone wanting a quick, smooth experience.
-          </p>
-          <div class="review-meta">
-            <span class="pill">June 4, 2026</span>
-            <span class="pill">Trustpilot review</span>
-            <span class="pill">Custom PC order</span>
-          </div>
-        </article>
-        <aside class="showcase">
-          <div class="showcase-card">
-            <h3>Review after delivery</h3>
-            <p class="muted">Customers order through Discord, receive their system, then use Trustpilot to leave public feedback.</p>
-          </div>
-        </aside>
-      </div>
-    </section>
+          <main id="home">
+            <section className="mx-auto grid min-h-[calc(100vh-80px)] w-[min(1200px,calc(100%-36px))] items-center gap-12 py-16 lg:grid-cols-[0.92fr_1.08fr]">
+              <div className="reveal">
+                <div className="mb-5 inline-flex rounded-full border border-violet/40 bg-violet/15 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-violet-100">Premium custom systems</div>
+                <h1 className="max-w-4xl text-6xl font-black leading-[0.86] tracking-normal md:text-8xl">Custom Gaming PCs Built For You</h1>
+                <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">
+                  Professionally assembled, stress-tested, tuned, and supported.
+                  Frameshift PCs builds premium systems that arrive clean, stable,
+                  and ready for serious gaming or creative work.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Button href="#order">Get a Quote</Button>
+                  <Button href={discordUrl} variant="secondary">Join Discord</Button>
+                </div>
+                <div className="mt-8 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
+                  {trustBadges.map(([title, copy]) => (
+                    <div className="glass rounded-xl p-4" key={title}>
+                      <b className="block">{title}</b>
+                      <span className="mt-1 block text-sm text-slate-400">{copy}</span>
+                    </div>
+                  ))}
+                </div>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {payments.map(([mark, name]) => (
+                    <span className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 text-sm font-bold text-slate-200" key={name}>
+                      <span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-to-br from-electric to-violet text-xs font-black text-slate-950">{mark}</span>{name}
+                    </span>
+                  ))}
+                </div>
+              </div>
 
-    <section class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">Build Process</div>
-          <h2>Simple, premium, transparent.</h2>
-        </div>
-      </div>
-      <div class="process-grid">
-        <article class="glass-card">
-          <div class="icon-box">1</div>
-          <h3>Consultation</h3>
-          <p class="muted">Share your budget, games, resolution, aesthetic, shipping needs, and deadline.</p>
-        </article>
-        <article class="glass-card">
-          <div class="icon-box">2</div>
-          <h3>Quote and Build</h3>
-          <p class="muted">We confirm the parts list, take payment, assemble the PC, and test it properly.</p>
-        </article>
-        <article class="glass-card">
-          <div class="icon-box">3</div>
-          <h3>Delivery and Support</h3>
-          <p class="muted">Your system arrives ready to use with support available after delivery.</p>
-        </article>
-      </div>
-    </section>
+              <div className="relative min-h-[420px] lg:min-h-[620px]">
+                <div className="absolute inset-8 rounded-full bg-violet/20 blur-3xl"></div>
+                <div className="hero-pc glass relative mx-auto max-w-[660px] overflow-hidden rounded-xl shadow-premium">
+                  <img className="aspect-[4/3] w-full object-cover" src="build-5070.jpg" alt="Premium custom gaming PC render" />
+                  <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-4 rounded-xl border border-white/15 bg-slate-950/75 p-4 backdrop-blur-2xl">
+                    <div>
+                      <b className="block">Surge 5070</b>
+                      <span className="text-sm text-slate-400">High-FPS 1440p platform</span>
+                    </div>
+                    <div className="text-2xl font-black">$1,499+</div>
+                  </div>
+                </div>
+              </div>
+            </section>
 
-    <section id="faq" class="wrap">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">FAQ</div>
-          <h2>Questions buyers ask first.</h2>
-        </div>
-      </div>
-      <div class="faq-grid">
-        <article class="faq-item">
-          <h3>Are prices final?</h3>
-          <p class="muted">No. Listed prices are starting points. Your Discord quote confirms the final total based on parts and shipping.</p>
-        </article>
-        <article class="faq-item">
-          <h3>Do you offer warranty?</h3>
-          <p class="muted">Yes. Warranty and support terms are included with the quote so buyers know what is covered.</p>
-        </article>
-        <article class="faq-item">
-          <h3>Can I request a theme?</h3>
-          <p class="muted">Yes. Black, white, RGB, stealth, creator, showcase, and budget-focused builds can all be discussed.</p>
-        </article>
-      </div>
-    </section>
+            <section id="gaming-pcs" className="mx-auto w-[min(1200px,calc(100%-36px))] py-24">
+              <SectionHeader eyebrow="Featured Builds" title="Performance tiers with premium finish.">
+                Choose a starting platform, then tailor the look, storage, cooling, and budget with a custom quote.
+              </SectionHeader>
+              <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                {builds.map((build) => <BuildCard build={build} key={build.name} />)}
+              </div>
+            </section>
 
-    <section id="order" class="wrap">
-      <div class="community">
-        <div>
-          <div class="eyebrow">Discord Community</div>
-          <h2>Start your quote in Discord.</h2>
-          <p class="lead">
-            Send your budget, main games, target resolution, color theme, and
-            deadline. We will help you choose the right tier and parts list.
-          </p>
-          <div class="actions">
-            <a class="button primary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Join Discord</a>
-            <a class="button secondary" href="https://www.trustpilot.com/review/mkanker770-lgtm.github.io" target="_blank" rel="noopener">Review Us</a>
-          </div>
-        </div>
-        <div class="glass-card">
-          <h3>Copy this into Discord</h3>
-          <p class="muted">
-            Budget: $____<br>
-            Games: ____<br>
-            Resolution: 1080p / 1440p / 4K<br>
-            Theme: ____<br>
-            Wi-Fi needed: yes / no<br>
-            Deadline: ____
-          </p>
-        </div>
-      </div>
-    </section>
-  </main>
+            <section id="workstations" className="mx-auto w-[min(1200px,calc(100%-36px))] py-24">
+              <SectionHeader eyebrow="Workstations" title="For creators, streamers, and serious multitasking.">
+                Gaming performance can be paired with workstation storage, memory, cooling, and quiet operation.
+              </SectionHeader>
+              <div className="grid gap-4 md:grid-cols-3">
+                {why.map(([num, title, copy]) => (
+                  <div className="glass rounded-xl p-6" key={title}>
+                    <div className="mb-6 grid h-12 w-12 place-items-center rounded-lg bg-gradient-to-br from-electric to-violet font-black text-slate-950">{num}</div>
+                    <h3 className="text-xl font-black">{title}</h3>
+                    <p className="mt-3 leading-7 text-slate-300">{copy}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
 
-  <footer>
-    <div class="wrap">Frameshift PCs - Premium custom gaming PCs. Build photos are style previews.</div>
-  </footer>
+            <section id="reviews" className="mx-auto w-[min(1200px,calc(100%-36px))] py-24">
+              <SectionHeader eyebrow="Reviews" title="Trust signals buyers can verify.">
+                Reviews should send customers to Trustpilot while Discord stays the community and quote channel.
+              </SectionHeader>
+              <div className="grid gap-4 lg:grid-cols-[1.05fr_.95fr]">
+                <article className="glass rounded-xl p-7">
+                  <b>Don</b>
+                  <div className="my-4 flex gap-1" aria-label="5 out of 5 rating">
+                    {Array.from({ length: 5 }).map((_, index) => <span className="grid h-8 w-8 place-items-center rounded bg-trust font-black" key={index}>*</span>)}
+                  </div>
+                  <h3 className="text-2xl font-black">Fast and Reliable!</h3>
+                  <p className="mt-4 text-lg leading-8 text-slate-200">
+                    Ordered a custom PC through Frameshift on Discord and it arrived super fast.
+                    Build was perfect and ready to go right out of the box. Highly recommend for
+                    anyone wanting a quick, smooth experience.
+                  </p>
+                  <div className="mt-5 flex flex-wrap gap-2 text-sm text-slate-300">
+                    <span className="rounded-full bg-white/10 px-3 py-2">June 4, 2026</span>
+                    <span className="rounded-full bg-white/10 px-3 py-2">Trustpilot review</span>
+                  </div>
+                </article>
+                <div className="glass flex min-h-full flex-col justify-between rounded-xl p-7">
+                  <div>
+                    <div className="text-2xl font-black text-trust">Trustpilot</div>
+                    <h3 className="mt-4 text-3xl font-black">Already bought from us?</h3>
+                    <p className="mt-4 leading-7 text-slate-300">Leave a public review after delivery so future buyers can verify the Frameshift experience.</p>
+                  </div>
+                  <div className="mt-7 flex flex-wrap gap-3">
+                    <Button href={trustpilotUrl}>Write a Review</Button>
+                    <Button href={discordUrl} variant="secondary">Community Discord</Button>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="faq" className="mx-auto w-[min(1200px,calc(100%-36px))] py-24">
+              <SectionHeader eyebrow="FAQ" title="Quick answers before you order." />
+              <div className="grid gap-4 md:grid-cols-3">
+                {faqs.map(([question, answer]) => (
+                  <div className="glass rounded-xl p-6" key={question}>
+                    <h3 className="text-xl font-black">{question}</h3>
+                    <p className="mt-3 leading-7 text-slate-300">{answer}</p>
+                  </div>
+                ))}
+              </div>
+            </section>
+
+            <section id="order" className="mx-auto w-[min(1200px,calc(100%-36px))] py-24">
+              <div className="glass grid overflow-hidden rounded-xl lg:grid-cols-[1fr_.82fr]">
+                <div className="p-8 md:p-12">
+                  <div className="mb-4 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">Order</div>
+                  <h2 className="text-4xl font-black leading-none md:text-6xl">Get your custom quote.</h2>
+                  <p className="mt-5 max-w-2xl text-lg leading-8 text-slate-300">
+                    Send your budget, games, resolution, theme, Wi-Fi needs, and deadline.
+                    We will help you choose the right tier and confirm a final parts list.
+                  </p>
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    <Button href="#gaming-pcs">Browse Builds</Button>
+                    <Button href={discordUrl} variant="secondary">Join Discord</Button>
+                  </div>
+                </div>
+                <div className="border-t border-white/10 bg-slate-950/40 p-8 md:p-12 lg:border-l lg:border-t-0">
+                  <h3 className="text-2xl font-black">Quote template</h3>
+                  <p className="mt-4 font-mono text-sm leading-7 text-slate-300">
+                    Budget: $____<br />
+                    Main games: ____<br />
+                    Resolution: 1080p / 1440p / 4K<br />
+                    Theme: ____<br />
+                    Wi-Fi needed: yes / no<br />
+                    Deadline: ____
+                  </p>
+                </div>
+              </div>
+            </section>
+          </main>
+
+          <footer className="border-t border-white/10 py-8 text-center text-sm text-slate-400">
+            Frameshift PCs - Premium custom gaming PCs. Build photos are style previews.
+          </footer>
+        </>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
 </body>
 </html>
