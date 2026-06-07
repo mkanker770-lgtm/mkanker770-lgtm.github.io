@@ -32,7 +32,7 @@
     };
   </script>
   <style>
-    html, body { height: 100%; overflow: hidden; }
+    html, body, #root { height: 100%; overflow: hidden; }
     body {
       background:
         radial-gradient(circle at 16% 4%, rgba(56,200,255,.22), transparent 32rem),
@@ -58,6 +58,11 @@
     }
     .view-enter {
       animation: viewEnter .34s ease both;
+    }
+    .view-scroll {
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: rgba(255,255,255,.28) transparent;
     }
     @keyframes viewEnter {
       from { opacity: 0; transform: translateY(14px) scale(.992); }
@@ -92,8 +97,8 @@
       { name: "Surge 5070", image: "build-5070.png", tag: "High FPS", price: "$699", specs: ["RTX 5070", "Ryzen 7 9700X", "32GB DDR5", "2TB NVMe"] }
     ];
 
-    const payments = [["S", "Stripe"], ["₿", "Crypto"]];
-    const indicators = [["5★ Reviews", "Public proof"], ["Secure Payments", "Flexible checkout"], ["Warranty", "Support included"]];
+    const payments = [["S", "Stripe"], ["BTC", "Crypto"]];
+    const indicators = [["5-star Reviews", "Public proof"], ["Secure Payments", "Flexible checkout"], ["Warranty", "Support included"]];
 
     function Button({ children, href, onClick, variant = "primary" }) {
       const classes = variant === "primary"
@@ -108,8 +113,8 @@
 
     function PageShell({ eyebrow, title, children, aside }) {
       return (
-        <section className="view-enter grid h-full min-h-0 gap-5 overflow-y-auto pr-1 lg:grid-cols-[minmax(0,1fr)_390px]">
-          <div className="min-h-0 overflow-hidden rounded-2xl">
+        <section className="view-enter view-scroll grid h-full min-h-0 gap-5 overflow-y-auto pb-28 pr-1 lg:grid-cols-[minmax(0,1fr)_390px] lg:pb-0">
+          <div className="min-h-0 rounded-2xl">
             <div className="mb-4 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">{eyebrow}</div>
             <h1 className="max-w-5xl text-4xl font-black leading-[.92] tracking-normal md:text-6xl xl:text-7xl">{title}</h1>
             <div className="mt-6">{children}</div>
@@ -143,7 +148,7 @@
 
     function Home({ setActive }) {
       return (
-        <div className="view-enter grid h-full min-h-0 items-center gap-8 overflow-y-auto pr-1 lg:grid-cols-[.95fr_1.05fr]">
+        <div className="view-enter view-scroll grid h-full min-h-0 items-center gap-8 overflow-y-auto pb-28 pr-1 lg:grid-cols-[.95fr_1.05fr] lg:pb-0">
           <div>
             <div className="mb-5 inline-flex rounded-full border border-violet/40 bg-violet/15 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-violet-100">Premium custom systems</div>
             <h1 className="max-w-4xl text-5xl font-black leading-[.86] tracking-normal md:text-7xl xl:text-8xl">Custom Gaming PCs Built For You</h1>
@@ -180,7 +185,7 @@
           title="Featured builds in clean performance tiers."
           aside={<aside className="glass hidden rounded-2xl p-6 lg:block"><div className="mb-4 rounded-xl border border-white/10 bg-white/10 p-4"><div className="text-sm font-black uppercase tracking-[0.14em] text-cyan-200">Quote engine</div><div className="mt-2 text-3xl font-black">3 build lanes</div></div><h3 className="text-2xl font-black">Choose a tier, then customize.</h3><p className="mt-4 leading-7 text-slate-300">Start from 3060 Ti, 4060, or 5070. We tune the quote around your games, color theme, delivery, and payment method.</p><div className="mt-6"><Button onClick={() => setActive("Order")}>Build My Quote</Button></div></aside>}
         >
-          <div className="grid max-h-[calc(100vh-250px)] gap-4 overflow-hidden md:grid-cols-2 xl:grid-cols-4">
+          <div className="grid gap-4 md:grid-cols-2 lg:max-h-[calc(100dvh-250px)] lg:overflow-y-auto lg:pr-1 xl:grid-cols-3">
             {builds.map((build) => <BuildCard build={build} key={build.name} />)}
           </div>
         </PageShell>
@@ -267,9 +272,11 @@
         return navItems.find((item) => item.toLowerCase() === hash.toLowerCase()) || "Home";
       }, []);
       const [active, setActiveState] = useState(initial);
+      const [menuOpen, setMenuOpen] = useState(false);
 
       function setActive(item) {
         setActiveState(item);
+        setMenuOpen(false);
         history.replaceState(null, "", `#${item.toLowerCase().replace(/\s+/g, "-")}`);
       }
 
@@ -283,14 +290,24 @@
       }[active];
 
       return (
-        <div className="flex h-screen flex-col overflow-hidden">
+        <div className="flex h-[100dvh] flex-col overflow-hidden">
           <header className="shrink-0 border-b border-white/10 bg-slate-950/70 backdrop-blur-2xl">
-            <nav className="mx-auto flex min-h-20 w-[min(1240px,calc(100%-32px))] flex-col gap-3 py-3 lg:flex-row lg:items-center lg:justify-between">
-              <button onClick={() => setActive("Home")} className="flex items-center gap-3 text-left font-black">
-                <img className="h-11 w-11 object-contain drop-shadow-[0_0_18px_rgba(159,103,255,.8)]" src="frameshift-logo.png" alt="Frameshift PCs logo" />
-                <span>Frameshift PCs</span>
-              </button>
-              <div className="flex flex-wrap items-center gap-1 rounded-2xl border border-white/10 bg-white/5 p-1 text-sm font-bold text-slate-300" role="tablist" aria-label="Site pages">
+            <nav className="mx-auto flex w-[min(1240px,calc(100%-32px))] flex-col gap-3 py-3 lg:min-h-20 lg:flex-row lg:items-center lg:justify-between">
+              <div className="flex items-center justify-between gap-3">
+                <button onClick={() => setActive("Home")} className="flex items-center gap-3 text-left font-black">
+                  <img className="h-11 w-11 object-contain drop-shadow-[0_0_18px_rgba(159,103,255,.8)]" src="frameshift-logo.png" alt="Frameshift PCs logo" />
+                  <span>Frameshift PCs</span>
+                </button>
+                <button
+                  className="inline-flex min-h-11 items-center rounded-xl border border-white/10 bg-white/10 px-4 text-sm font-black lg:hidden"
+                  onClick={() => setMenuOpen((open) => !open)}
+                  aria-expanded={menuOpen}
+                  aria-controls="mobile-menu"
+                >
+                  {menuOpen ? "Close" : "Menu"}
+                </button>
+              </div>
+              <div className="hidden flex-wrap items-center gap-1 rounded-2xl border border-white/10 bg-white/5 p-1 text-sm font-bold text-slate-300 lg:flex" role="tablist" aria-label="Site pages">
                 {navItems.map((item) => (
                   <button
                     className={`rounded-xl px-3 py-2 transition ${active === item ? "bg-white text-slate-950" : "hover:bg-white/10 hover:text-white"}`}
@@ -303,10 +320,31 @@
                   </button>
                 ))}
               </div>
-              <div className="flex flex-wrap gap-2">
+              <div className="hidden flex-wrap gap-2 lg:flex">
                 <Button onClick={() => setActive("Order")}>Get a Quote</Button>
                 <Button href={discordUrl} variant="secondary">Join Discord</Button>
               </div>
+              {menuOpen && (
+                <div id="mobile-menu" className="view-enter grid gap-2 rounded-2xl border border-white/10 bg-slate-950/95 p-3 shadow-premium lg:hidden" role="tablist" aria-label="Mobile site pages">
+                  <div className="grid grid-cols-2 gap-2">
+                    {navItems.map((item) => (
+                      <button
+                        className={`min-h-11 rounded-xl px-3 text-left text-sm font-black transition ${active === item ? "bg-white text-slate-950" : "bg-white/10 text-slate-200"}`}
+                        onClick={() => setActive(item)}
+                        role="tab"
+                        aria-selected={active === item}
+                        key={item}
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                  <div className="grid grid-cols-2 gap-2">
+                    <Button onClick={() => setActive("Order")}>Get a Quote</Button>
+                    <Button href={discordUrl} variant="secondary">Discord</Button>
+                  </div>
+                </div>
+              )}
             </nav>
           </header>
           <main className="min-h-0 flex-1 overflow-hidden">
