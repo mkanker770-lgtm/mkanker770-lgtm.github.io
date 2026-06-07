@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Frameshift PCs | Custom Gaming PCs</title>
-  <meta name="description" content="Frameshift PCs builds custom gaming PCs through Discord. Browse RTX builds, pricing, reviews, and order through Discord.">
+  <title>Frameshift PCs | Premium Custom Gaming PCs</title>
+  <meta name="description" content="Premium custom gaming PCs and workstations professionally assembled, tested, and supported by Frameshift PCs.">
   <script>
     (function(w,d,s,r,n){w.TrustpilotObject=n;w[n]=w[n]||function(){(w[n].q=w[n].q||[]).push(arguments)};
       a=d.createElement(s);a.async=1;a.src=r;a.type='text/java'+s;f=d.getElementsByTagName(s)[0];
@@ -15,29 +15,30 @@
     :root {
       color-scheme: dark;
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
-      background: #07080c;
-      color: #f6f7fb;
-      --panel: rgba(18, 20, 29, 0.82);
-      --panel-2: rgba(27, 30, 42, 0.78);
-      --line: rgba(255, 255, 255, 0.1);
-      --muted: #aeb7c8;
-      --purple: #9a5cff;
-      --cyan: #35d5ff;
+      --bg: #05060a;
+      --ink: #f8fbff;
+      --muted: #b9c2d3;
+      --line: rgba(255,255,255,.12);
+      --glass: rgba(18, 22, 33, .62);
+      --glass-strong: rgba(23, 28, 42, .82);
+      --purple: #9f67ff;
+      --blue: #39c7ff;
       --green: #00b67a;
+      --gold: #f6c96b;
     }
 
     * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
       min-height: 100vh;
       background:
-        linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px),
-        radial-gradient(circle at 18% 14%, rgba(53, 213, 255, 0.14), transparent 28rem),
-        radial-gradient(circle at 84% 8%, rgba(154, 92, 255, 0.24), transparent 30rem),
-        #07080c;
-      background-size: 42px 42px, 42px 42px, auto, auto, auto;
+        radial-gradient(circle at 18% -10%, rgba(57,199,255,.22), transparent 34rem),
+        radial-gradient(circle at 86% 4%, rgba(159,103,255,.28), transparent 36rem),
+        linear-gradient(180deg, #080a10 0%, var(--bg) 38%, #080a10 100%);
+      color: var(--ink);
     }
 
     body::before {
@@ -45,29 +46,36 @@
       position: fixed;
       inset: 0;
       pointer-events: none;
-      background: linear-gradient(180deg, rgba(7, 8, 12, 0.1), #07080c 86%);
       z-index: -1;
+      background-image:
+        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
+      background-size: 56px 56px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,.75), transparent 72%);
     }
 
-    a { color: inherit; text-decoration: none; }
     img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
 
-    .app-shell {
-      min-height: 100vh;
-      display: grid;
-      grid-template-columns: 260px minmax(0, 1fr);
+    .wrap {
+      width: min(1200px, calc(100% - 36px));
+      margin: 0 auto;
     }
 
-    aside {
+    .site-header {
       position: sticky;
       top: 0;
-      height: 100vh;
-      border-right: 1px solid var(--line);
-      background: rgba(8, 9, 14, 0.88);
-      backdrop-filter: blur(20px);
-      padding: 22px 16px;
+      z-index: 50;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(5,6,10,.76);
+      backdrop-filter: blur(22px);
+    }
+
+    .nav {
+      min-height: 78px;
       display: flex;
-      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
       gap: 22px;
     }
 
@@ -75,280 +83,341 @@
       display: flex;
       align-items: center;
       gap: 12px;
-      min-height: 54px;
-      padding: 0 8px;
       font-weight: 950;
       letter-spacing: 0;
+      white-space: nowrap;
     }
 
     .brand img {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       object-fit: contain;
-      filter: drop-shadow(0 0 16px rgba(154, 92, 255, 0.72));
+      filter: drop-shadow(0 0 18px rgba(159,103,255,.8));
     }
 
-    .brand small {
-      display: block;
-      margin-top: 3px;
-      color: var(--muted);
-      font-weight: 750;
-    }
-
-    .tabs {
-      display: grid;
-      gap: 7px;
-    }
-
-    .tab-link {
+    .nav-links {
       display: flex;
       align-items: center;
-      justify-content: space-between;
-      min-height: 46px;
-      padding: 0 12px;
-      border-radius: 8px;
-      color: #d9deea;
-      font-weight: 850;
-      border: 1px solid transparent;
-      background: transparent;
-      cursor: pointer;
-      font: inherit;
-      text-align: left;
-    }
-
-    .tab-link:hover,
-    .tab-link.active {
-      color: #fff;
-      border-color: rgba(154, 92, 255, 0.34);
-      background: linear-gradient(135deg, rgba(154, 92, 255, 0.22), rgba(53, 213, 255, 0.08));
-    }
-
-    .side-card {
-      margin-top: auto;
-      border: 1px solid rgba(53, 213, 255, 0.22);
-      border-radius: 8px;
-      background: rgba(53, 213, 255, 0.07);
-      padding: 14px;
-      color: #dce8f2;
-    }
-
-    .side-card strong { display: block; margin-bottom: 8px; }
-    .side-card p { margin: 0; color: var(--muted); line-height: 1.45; font-size: 0.9rem; }
-
-    main {
-      min-width: 0;
-      padding: 26px;
-    }
-
-    .topbar {
-      width: min(1180px, 100%);
-      margin: 0 auto 20px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-    }
-
-    .status {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      color: #dbe2ee;
-      font-size: 0.92rem;
-    }
-
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      min-height: 32px;
-      padding: 0 10px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255, 255, 255, 0.055);
+      gap: 4px;
+      color: #d8dfeb;
+      font-size: .95rem;
       font-weight: 800;
+    }
+
+    .nav-links a {
+      padding: 10px 12px;
+      border-radius: 8px;
+      transition: background .18s ease, color .18s ease;
+    }
+
+    .nav-links a:hover {
+      color: white;
+      background: rgba(255,255,255,.08);
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 10px;
+      align-items: center;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 46px;
-      padding: 0 16px;
+      min-height: 48px;
+      padding: 0 18px;
       border-radius: 8px;
-      font-weight: 950;
       border: 1px solid transparent;
+      font-weight: 950;
       white-space: nowrap;
+      transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease, background .18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
     }
 
     .button.primary {
-      color: #06080d;
-      background: linear-gradient(135deg, #f7fbff, var(--cyan) 48%, var(--purple));
-      box-shadow: 0 18px 44px rgba(53, 213, 255, 0.18);
+      color: #061019;
+      background: linear-gradient(135deg, #fff, #8be6ff 42%, #b98cff 100%);
+      box-shadow: 0 18px 48px rgba(57,199,255,.2);
     }
 
     .button.secondary {
-      color: #f6f7fb;
+      color: var(--ink);
       border-color: var(--line);
-      background: rgba(255, 255, 255, 0.065);
-    }
-
-    .view {
-      display: none;
-      width: min(1180px, 100%);
-      margin: 0 auto;
-    }
-
-    .view.active { display: block; }
-
-    .panel {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel);
-      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.28);
-      overflow: hidden;
+      background: rgba(255,255,255,.075);
     }
 
     .hero {
+      position: relative;
+      min-height: calc(100vh - 78px);
       display: grid;
-      grid-template-columns: minmax(0, 0.96fr) minmax(320px, 1.04fr);
-      min-height: calc(100vh - 98px);
-    }
-
-    .hero-copy {
-      padding: clamp(30px, 5vw, 58px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      grid-template-columns: minmax(0, .96fr) minmax(320px, 1.04fr);
+      align-items: center;
+      gap: 46px;
+      padding: 74px 0 48px;
     }
 
     .eyebrow {
-      color: #cdd8e6;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.78rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px solid rgba(159,103,255,.35);
+      border-radius: 999px;
+      background: rgba(159,103,255,.12);
+      color: #ded1ff;
+      font-size: .78rem;
       font-weight: 950;
+      letter-spacing: .11em;
+      text-transform: uppercase;
     }
 
+    h1, h2, h3, p { margin-top: 0; }
+
     h1 {
-      margin: 16px 0 0;
-      font-size: clamp(3.2rem, 8vw, 7.3rem);
-      line-height: 0.88;
+      margin-bottom: 0;
+      max-width: 11ch;
+      font-size: clamp(3.6rem, 9.5vw, 8.4rem);
+      line-height: .86;
       letter-spacing: 0;
     }
 
+    .hero h1 { margin-top: 18px; }
+
     .lead {
-      margin: 24px 0 0;
-      color: #cbd4e3;
-      font-size: 1.08rem;
-      line-height: 1.72;
-      max-width: 58ch;
+      max-width: 62ch;
+      margin: 26px 0 0;
+      color: #d4dbe8;
+      font-size: 1.16rem;
+      line-height: 1.75;
     }
 
     .actions {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
+      gap: 12px;
+      margin-top: 30px;
     }
 
-    .hero-visual {
+    .hero-media {
       position: relative;
-      min-height: 460px;
-      background:
-        linear-gradient(180deg, rgba(7, 8, 12, 0), rgba(7, 8, 12, 0.72)),
-        url("build-5070.jpg") center / cover;
-    }
-
-    .hero-visual::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(90deg, rgba(18,20,29,0.94), transparent 36%);
-    }
-
-    .hero-logo {
-      position: absolute;
-      right: 24px;
-      bottom: 24px;
-      z-index: 1;
-      width: min(250px, 44%);
-      filter: drop-shadow(0 24px 38px rgba(154, 92, 255, 0.55));
-    }
-
-    .grid-2,
-    .grid-3,
-    .grid-4 {
+      min-height: 560px;
       display: grid;
-      gap: 14px;
+      place-items: center;
     }
 
-    .grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-    .grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .product-frame {
+      position: relative;
+      width: min(100%, 610px);
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--glass);
+      box-shadow: 0 36px 120px rgba(0,0,0,.5), 0 0 90px rgba(159,103,255,.16);
+      transform: perspective(1000px) rotateY(-7deg) rotateX(3deg);
+      animation: float 6s ease-in-out infinite;
+    }
 
-    .section-title {
+    @keyframes float {
+      0%, 100% { translate: 0 0; }
+      50% { translate: 0 -10px; }
+    }
+
+    .product-frame img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+    }
+
+    .product-overlay {
+      position: absolute;
+      inset: auto 16px 16px;
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      padding: 14px;
+      background: rgba(5,6,10,.72);
+      backdrop-filter: blur(18px);
+    }
+
+    .product-overlay strong { display: block; }
+    .product-overlay span { display: block; color: var(--muted); font-size: .9rem; margin-top: 4px; }
+
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 38px;
+    }
+
+    .trust-badge,
+    .glass-card,
+    .build-card,
+    .review-card,
+    .faq-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--glass);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 20px 70px rgba(0,0,0,.22);
+    }
+
+    .trust-badge {
+      padding: 16px;
+      min-height: 86px;
+    }
+
+    .trust-badge strong {
+      display: block;
+      font-size: 1.04rem;
+      margin-bottom: 6px;
+    }
+
+    .trust-badge span {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .payments {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .pay {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-height: 40px;
+      padding: 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.13);
+      background: rgba(255,255,255,.07);
+      color: #e8edf6;
+      font-weight: 850;
+      font-size: .92rem;
+    }
+
+    .pay-mark {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      color: #071019;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      font-size: .78rem;
+      font-weight: 950;
+    }
+
+    section {
+      padding: 94px 0;
+    }
+
+    .section-head {
       display: flex;
       align-items: end;
       justify-content: space-between;
-      gap: 18px;
-      margin: 0 0 18px;
+      gap: 28px;
+      margin-bottom: 28px;
     }
 
     h2 {
-      margin: 0;
-      font-size: clamp(2rem, 4vw, 3.3rem);
-      line-height: 0.95;
+      margin-bottom: 0;
+      font-size: clamp(2.35rem, 5vw, 4.6rem);
+      line-height: .92;
       letter-spacing: 0;
     }
 
     .muted {
       color: var(--muted);
-      line-height: 1.65;
-      margin: 0;
+      line-height: 1.68;
     }
 
-    .card {
-      border: 1px solid var(--line);
-      border-radius: 8px;
-      background: var(--panel-2);
+    .section-head .muted {
+      max-width: 58ch;
+      margin-bottom: 0;
+    }
+
+    .build-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .build-card {
       overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.085), rgba(255,255,255,.045));
     }
-
-    .card-pad { padding: 20px; }
 
     .build-card figure {
       margin: 0;
       aspect-ratio: 16 / 11;
       overflow: hidden;
-      background: #10121a;
+      background: #10131b;
     }
 
     .build-card img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      transition: transform .28s ease;
     }
 
-    .build-head {
+    .build-card:hover img { transform: scale(1.035); }
+
+    .build-body { padding: 18px; }
+
+    .build-top {
       display: flex;
       justify-content: space-between;
-      gap: 12px;
       align-items: start;
-      margin-bottom: 14px;
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
-    .build-head h3,
-    .card h3 {
-      margin: 0;
-      font-size: 1.18rem;
+    h3 {
+      margin-bottom: 0;
+      font-size: 1.2rem;
       line-height: 1.15;
     }
 
     .price {
-      color: #fff;
-      font-size: 1.45rem;
+      color: white;
       font-weight: 950;
       white-space: nowrap;
+    }
+
+    .specs {
+      display: grid;
+      gap: 8px;
+      list-style: none;
+      padding: 0;
+      margin: 16px 0 0;
+      color: #dde5f1;
+      font-size: .93rem;
+    }
+
+    .specs li {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .specs b {
+      color: white;
+      font-weight: 900;
+      text-align: right;
     }
 
     .chip {
@@ -357,382 +426,438 @@
       min-height: 28px;
       padding: 0 10px;
       border-radius: 999px;
-      color: #07100d;
-      background: #6df0c3;
-      font-size: 0.78rem;
+      color: #061019;
+      background: linear-gradient(135deg, #effbff, #83e5ff);
+      font-size: .78rem;
       font-weight: 950;
     }
 
-    .specs {
-      list-style: none;
-      padding: 0;
-      margin: 0;
+    .why-grid,
+    .process-grid,
+    .faq-grid {
       display: grid;
-      gap: 8px;
-      color: #dce3ef;
-      font-size: 0.93rem;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .specs li {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.075);
+    .glass-card,
+    .faq-item {
+      padding: 24px;
     }
 
-    .specs b { color: #fff; font-weight: 900; text-align: right; }
-
-    .pricing-card {
-      position: relative;
-      padding: 22px;
-      min-height: 100%;
+    .icon-box {
+      display: grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      color: #061019;
+      background: linear-gradient(135deg, var(--blue), var(--purple));
+      font-weight: 950;
     }
 
-    .pricing-card.featured {
-      border-color: rgba(53, 213, 255, 0.35);
-      background: linear-gradient(180deg, rgba(53, 213, 255, 0.12), rgba(27, 30, 42, 0.78));
+    .review-layout,
+    .community {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, .95fr);
+      gap: 14px;
+      align-items: stretch;
     }
 
-    .pricing-card .price {
-      margin: 12px 0 4px;
-      font-size: 2rem;
-    }
-
-    .fine {
-      color: #8f9bad;
-      font-size: 0.88rem;
-    }
-
-    .review {
-      padding: 22px;
+    .review-card {
+      padding: 26px;
     }
 
     .stars {
       display: flex;
       gap: 4px;
-      margin: 12px 0 16px;
+      margin: 14px 0 18px;
     }
 
     .stars span {
       display: grid;
       place-items: center;
-      width: 28px;
-      height: 28px;
-      border-radius: 3px;
+      width: 30px;
+      height: 30px;
+      border-radius: 4px;
       background: var(--green);
       color: white;
       font-weight: 950;
     }
 
     .quote {
-      font-size: 1.05rem;
-      line-height: 1.7;
-      color: #e5ebf5;
-      margin: 0;
+      color: #e8edf6;
+      font-size: 1.08rem;
+      line-height: 1.72;
     }
 
     .review-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      margin-top: 18px;
-      color: #c6d0df;
-      font-size: 0.9rem;
+      margin-top: 20px;
+      color: #d2d9e6;
+      font-size: .9rem;
     }
 
     .pill {
       border-radius: 999px;
       padding: 7px 10px;
-      background: rgba(255, 255, 255, 0.08);
+      background: rgba(255,255,255,.08);
     }
 
-    .empty-space {
-      min-height: 18px;
+    .showcase {
+      min-height: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background:
+        linear-gradient(180deg, rgba(5,6,10,.08), rgba(5,6,10,.8)),
+        url("build-4080.jpg") center / cover;
+      display: flex;
+      align-items: end;
+      padding: 24px;
     }
 
-    @media (max-width: 1100px) {
-      .app-shell { grid-template-columns: 1fr; }
-      aside {
-        position: static;
-        height: auto;
-        border-right: 0;
-        border-bottom: 1px solid var(--line);
-      }
-      .tabs { grid-template-columns: repeat(5, minmax(0, 1fr)); }
-      .side-card { display: none; }
+    .showcase-card {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 8px;
+      padding: 18px;
+      background: rgba(5,6,10,.72);
+      backdrop-filter: blur(18px);
+    }
+
+    .faq-item h3 { margin-bottom: 10px; }
+
+    .community {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background:
+        linear-gradient(90deg, rgba(5,6,10,.92), rgba(5,6,10,.52)),
+        url("build-5070.jpg") center / cover;
+      overflow: hidden;
+      padding: clamp(26px, 5vw, 48px);
+    }
+
+    .community .glass-card {
+      background: rgba(5,6,10,.72);
+      min-height: 100%;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255,255,255,.08);
+      color: #9fa9bb;
+      padding: 34px 0;
+      text-align: center;
+    }
+
+    @media (max-width: 1060px) {
+      .nav { align-items: flex-start; flex-direction: column; padding: 14px 0; }
+      .nav-links { flex-wrap: wrap; }
       .hero,
-      .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .review-layout,
+      .community { grid-template-columns: 1fr; }
+      .hero-media { min-height: 430px; order: -1; }
+      .trust-strip,
+      .build-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .why-grid,
+      .process-grid,
+      .faq-grid { grid-template-columns: 1fr; }
     }
 
-    @media (max-width: 760px) {
-      main { padding: 16px; }
-      .topbar,
-      .section-title { align-items: flex-start; flex-direction: column; }
-      .tabs,
-      .hero,
-      .grid-2,
-      .grid-3,
-      .grid-4 { grid-template-columns: 1fr; }
-      .tab-link { justify-content: flex-start; gap: 12px; }
-      h1 { font-size: clamp(3rem, 16vw, 4.4rem); }
-      .hero-visual { min-height: 300px; }
+    @media (max-width: 700px) {
+      .wrap { width: min(100% - 28px, 1200px); }
+      .nav-cta { width: 100%; flex-wrap: wrap; }
+      .nav-cta .button { flex: 1; }
+      h1 { font-size: clamp(3.15rem, 16vw, 4.8rem); }
+      .hero { padding-top: 36px; }
+      .hero-media { min-height: 300px; }
+      .product-frame { transform: none; }
+      .section-head { display: block; }
+      .section-head .muted { margin-top: 14px; }
+      .trust-strip,
+      .build-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
-  <div class="app-shell">
-    <aside>
-      <a class="brand" href="#home" data-tab="home" aria-label="Frameshift PCs home">
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Frameshift PCs home">
         <img src="frameshift-logo.png" alt="Frameshift PCs logo">
-        <span>Frameshift PCs<small>Custom builds</small></span>
+        <span>Frameshift PCs</span>
       </a>
-      <div class="tabs" role="tablist" aria-label="Site sections">
-        <button class="tab-link active" type="button" data-tab="home">Home <span>01</span></button>
-        <button class="tab-link" type="button" data-tab="builds">Builds <span>02</span></button>
-        <button class="tab-link" type="button" data-tab="pricing">Pricing <span>03</span></button>
-        <button class="tab-link" type="button" data-tab="reviews">Reviews <span>04</span></button>
-        <button class="tab-link" type="button" data-tab="order">Order <span>05</span></button>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#gaming-pcs">Gaming PCs</a>
+        <a href="#workstations">Workstations</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#faq">FAQ</a>
+        <a href="#order">Order</a>
       </div>
-      <div class="side-card">
-        <strong>Discord first</strong>
-        <p>Build quotes, part swaps, pickup/shipping talk, and customer updates all start in Discord.</p>
+      <div class="nav-cta">
+        <a class="button secondary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Join Discord</a>
+        <a class="button primary" href="#order">Get a Quote</a>
       </div>
-    </aside>
+    </nav>
+  </header>
 
-    <main>
-      <div class="topbar">
-        <div class="status">
-          <span class="badge">RTX build tiers</span>
-          <span class="badge">Discord ordering</span>
-          <span class="badge">Trustpilot reviews</span>
+  <main id="home">
+    <section class="hero wrap">
+      <div>
+        <div class="eyebrow">Premium custom systems</div>
+        <h1>Custom Gaming PCs Built For You</h1>
+        <p class="lead">
+          Every Frameshift PC is professionally assembled, stress-tested, tuned,
+          and supported so your system arrives clean, stable, and ready to play.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="#order">Get a Quote</a>
+          <a class="button secondary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Join Discord</a>
         </div>
-        <a class="button primary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Join Discord</a>
+        <div class="trust-strip" aria-label="Trust badges">
+          <div class="trust-badge"><strong>5 Star Reviews</strong><span>Customer feedback matters.</span></div>
+          <div class="trust-badge"><strong>Secure Payments</strong><span>Flexible checkout options.</span></div>
+          <div class="trust-badge"><strong>Worldwide Shipping</strong><span>Quote-based delivery.</span></div>
+          <div class="trust-badge"><strong>Warranty Included</strong><span>Support after delivery.</span></div>
+        </div>
+        <div class="payments" aria-label="Accepted payment methods">
+          <span class="pay"><span class="pay-mark">P</span>PayPal</span>
+          <span class="pay"><span class="pay-mark">CC</span>Credit/Debit Cards</span>
+          <span class="pay"><span class="pay-mark">A</span>Apple Pay</span>
+          <span class="pay"><span class="pay-mark">G</span>Google Pay</span>
+          <span class="pay"><span class="pay-mark">K</span>Klarna</span>
+          <span class="pay"><span class="pay-mark">B</span>Bank Transfer</span>
+        </div>
       </div>
-
-      <section class="view active" id="home" data-view="home">
-        <div class="panel hero">
-          <div class="hero-copy">
-            <div class="eyebrow">Frameshift PCs</div>
-            <h1>Custom PCs without the sketchy parts list.</h1>
-            <p class="lead">
-              Choose a performance lane, talk through your budget in Discord,
-              and get a clean gaming PC built around your games, setup, and style.
-            </p>
-            <div class="actions">
-              <button class="button primary" type="button" data-tab="builds">View Builds</button>
-              <button class="button secondary" type="button" data-tab="pricing">See Pricing</button>
-              <a class="button secondary" href="https://www.trustpilot.com/review/mkanker770-lgtm.github.io" target="_blank" rel="noopener">Write Review</a>
+      <div class="hero-media" aria-label="Featured custom PC">
+        <div class="product-frame">
+          <img src="build-5070.jpg" alt="Premium liquid cooled custom gaming PC">
+          <div class="product-overlay">
+            <div>
+              <strong>Surge 5070</strong>
+              <span>1440p high FPS build</span>
             </div>
-          </div>
-          <div class="hero-visual">
-            <img class="hero-logo" src="frameshift-logo.png" alt="Frameshift PCs logo">
+            <div class="price">$1,499+</div>
           </div>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="view" id="builds" data-view="builds">
-        <div class="section-title">
-          <div>
-            <div class="eyebrow">Build menu</div>
-            <h2>Pick your lane.</h2>
-          </div>
-          <p class="muted">These are starting configs. Final prices move with parts, sales, shipping, and any upgrades you request.</p>
+    <section id="gaming-pcs" class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Featured Builds</div>
+          <h2>Performance tiers for every setup.</h2>
         </div>
-        <div class="grid-4">
-          <article class="card build-card">
-            <figure><img src="build-4060.jpg" alt="Black RGB RTX 4060 gaming PC preview" loading="lazy"></figure>
-            <div class="card-pad">
-              <div class="build-head"><h3>Shift 4060</h3><span class="chip">1080p</span></div>
-              <ul class="specs">
-                <li><span>Starting at</span><b>$799</b></li>
-                <li><span>GPU</span><b>RTX 4060</b></li>
-                <li><span>CPU</span><b>Ryzen 5 7600</b></li>
-                <li><span>RAM</span><b>16GB DDR5</b></li>
-                <li><span>Storage</span><b>1TB NVMe</b></li>
-              </ul>
-              <div class="actions"><a class="button secondary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Ask About This</a></div>
-            </div>
-          </article>
-
-          <article class="card build-card">
-            <figure><img src="build-5060ti.jpg" alt="RTX 5060 Ti gaming PC graphics card preview" loading="lazy"></figure>
-            <div class="card-pad">
-              <div class="build-head"><h3>Pulse 5060 Ti</h3><span class="chip">1440p</span></div>
-              <ul class="specs">
-                <li><span>Starting at</span><b>$1,099</b></li>
-                <li><span>GPU</span><b>RTX 5060 Ti</b></li>
-                <li><span>CPU</span><b>Ryzen 5 9600X</b></li>
-                <li><span>RAM</span><b>32GB DDR5</b></li>
-                <li><span>Cooling</span><b>240mm AIO</b></li>
-              </ul>
-              <div class="actions"><a class="button secondary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Ask About This</a></div>
-            </div>
-          </article>
-
-          <article class="card build-card">
-            <figure><img src="build-5070.jpg" alt="Liquid cooled RTX 5070 gaming PC preview" loading="lazy"></figure>
-            <div class="card-pad">
-              <div class="build-head"><h3>Surge 5070</h3><span class="chip">High FPS</span></div>
-              <ul class="specs">
-                <li><span>Starting at</span><b>$1,499</b></li>
-                <li><span>GPU</span><b>RTX 5070</b></li>
-                <li><span>CPU</span><b>Ryzen 7 9700X</b></li>
-                <li><span>RAM</span><b>32GB DDR5</b></li>
-                <li><span>Storage</span><b>2TB NVMe</b></li>
-              </ul>
-              <div class="actions"><a class="button secondary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Ask About This</a></div>
-            </div>
-          </article>
-
-          <article class="card build-card">
-            <figure><img src="build-4080.jpg" alt="High end RTX 4080 gaming PC interior preview" loading="lazy"></figure>
-            <div class="card-pad">
-              <div class="build-head"><h3>Apex 4080</h3><span class="chip">4K</span></div>
-              <ul class="specs">
-                <li><span>Starting at</span><b>$2,299</b></li>
-                <li><span>GPU</span><b>RTX 4080</b></li>
-                <li><span>CPU</span><b>Ryzen 7 9800X3D</b></li>
-                <li><span>RAM</span><b>64GB DDR5</b></li>
-                <li><span>Cooling</span><b>360mm AIO</b></li>
-              </ul>
-              <div class="actions"><a class="button secondary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Ask About This</a></div>
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="view" id="pricing" data-view="pricing">
-        <div class="section-title">
-          <div>
-            <div class="eyebrow">Pricing</div>
-            <h2>Clear starting points.</h2>
-          </div>
-          <p class="muted">Prices are estimates for quote conversations, not locked checkout prices. Discord quote confirms the final total.</p>
-        </div>
-        <div class="grid-3">
-          <article class="card pricing-card">
-            <span class="chip">Starter</span>
-            <h3>1080p Build</h3>
+        <p class="muted">
+          Starting prices help you pick a lane. Final quotes depend on parts,
+          availability, shipping, color theme, and upgrade choices.
+        </p>
+      </div>
+      <div class="build-grid">
+        <article class="build-card">
+          <figure><img src="build-4060.jpg" alt="RTX 4060 gaming PC build" loading="lazy"></figure>
+          <div class="build-body">
+            <div class="build-top"><h3>Shift 4060</h3><span class="chip">1080p</span></div>
             <div class="price">$799+</div>
-            <p class="muted">Great for Fortnite, Roblox, Valorant, Minecraft, GTA, and everyday gaming.</p>
-            <div class="empty-space"></div>
             <ul class="specs">
-              <li><span>GPU range</span><b>RTX 4060</b></li>
-              <li><span>RAM</span><b>16GB+</b></li>
-              <li><span>Storage</span><b>1TB</b></li>
+              <li><span>GPU</span><b>RTX 4060</b></li>
+              <li><span>CPU</span><b>Ryzen 5 7600</b></li>
+              <li><span>Memory</span><b>16GB DDR5</b></li>
+              <li><span>Storage</span><b>1TB NVMe</b></li>
             </ul>
-          </article>
-          <article class="card pricing-card featured">
-            <span class="chip">Most asked</span>
-            <h3>1440p Build</h3>
+          </div>
+        </article>
+        <article class="build-card">
+          <figure><img src="build-5060ti.jpg" alt="RTX 5060 Ti gaming PC build" loading="lazy"></figure>
+          <div class="build-body">
+            <div class="build-top"><h3>Pulse 5060 Ti</h3><span class="chip">1440p</span></div>
             <div class="price">$1,099+</div>
-            <p class="muted">Balanced build for higher FPS, streaming, school, editing, and clean RGB setups.</p>
-            <div class="empty-space"></div>
             <ul class="specs">
-              <li><span>GPU range</span><b>5060 Ti / 5070</b></li>
-              <li><span>RAM</span><b>32GB</b></li>
-              <li><span>Cooling</span><b>AIO optional</b></li>
+              <li><span>GPU</span><b>RTX 5060 Ti</b></li>
+              <li><span>CPU</span><b>Ryzen 5 9600X</b></li>
+              <li><span>Memory</span><b>32GB DDR5</b></li>
+              <li><span>Cooling</span><b>240mm AIO</b></li>
             </ul>
-          </article>
-          <article class="card pricing-card">
-            <span class="chip">High end</span>
-            <h3>4K / Creator</h3>
+          </div>
+        </article>
+        <article class="build-card">
+          <figure><img src="build-5070.jpg" alt="RTX 5070 gaming PC build" loading="lazy"></figure>
+          <div class="build-body">
+            <div class="build-top"><h3>Surge 5070</h3><span class="chip">High FPS</span></div>
+            <div class="price">$1,499+</div>
+            <ul class="specs">
+              <li><span>GPU</span><b>RTX 5070</b></li>
+              <li><span>CPU</span><b>Ryzen 7 9700X</b></li>
+              <li><span>Memory</span><b>32GB DDR5</b></li>
+              <li><span>Storage</span><b>2TB NVMe</b></li>
+            </ul>
+          </div>
+        </article>
+        <article class="build-card">
+          <figure><img src="build-4080.jpg" alt="RTX 4080 gaming PC build" loading="lazy"></figure>
+          <div class="build-body">
+            <div class="build-top"><h3>Apex 4080</h3><span class="chip">4K</span></div>
             <div class="price">$2,299+</div>
-            <p class="muted">For maxed settings, heavy multitasking, editing, streaming, and premium visuals.</p>
-            <div class="empty-space"></div>
             <ul class="specs">
-              <li><span>GPU range</span><b>RTX 4080+</b></li>
-              <li><span>RAM</span><b>64GB option</b></li>
-              <li><span>Storage</span><b>2TB+</b></li>
+              <li><span>GPU</span><b>RTX 4080</b></li>
+              <li><span>CPU</span><b>Ryzen 7 9800X3D</b></li>
+              <li><span>Memory</span><b>64GB DDR5</b></li>
+              <li><span>Cooling</span><b>360mm AIO</b></li>
             </ul>
-          </article>
-        </div>
-        <p class="fine" style="margin-top: 14px;">Final quote depends on exact parts, taxes, shipping/pickup, used vs new parts, and availability.</p>
-      </section>
-
-      <section class="view" id="reviews" data-view="reviews">
-        <div class="section-title">
-          <div>
-            <div class="eyebrow">Reputation</div>
-            <h2>Discord order. Trustpilot review.</h2>
           </div>
-          <a class="button primary" href="https://www.trustpilot.com/review/mkanker770-lgtm.github.io" target="_blank" rel="noopener">Write A Trustpilot Review</a>
-        </div>
-        <div class="grid-2">
-          <article class="card review">
-            <strong>Don</strong>
-            <div class="stars" aria-label="5 out of 5 stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-            <h3>Fast and Reliable!</h3>
-            <p class="quote">Ordered a custom PC through Frameshift on Discord and it arrived super fast! Build was perfect and ready to go right out of the box. Highly recommend for anyone wanting a quick, smooth experience.</p>
-            <div class="review-meta"><span class="pill">June 4, 2026</span><span class="pill">Trustpilot review</span></div>
-          </article>
-          <article class="card review">
-            <strong>Review flow</strong>
-            <div class="stars" aria-label="Trustpilot review flow"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
-            <h3>How customers review</h3>
-            <p class="quote">Customers order or ask questions in Discord first. After the build is delivered, they can use the Trustpilot button to leave verified public feedback.</p>
-            <div class="actions"><a class="button secondary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Join Discord</a></div>
-          </article>
-        </div>
-      </section>
+        </article>
+      </div>
+    </section>
 
-      <section class="view" id="order" data-view="order">
-        <div class="section-title">
-          <div>
-            <div class="eyebrow">Start order</div>
-            <h2>Send the right info.</h2>
+    <section id="workstations" class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Why Choose Us</div>
+          <h2>Premium service from quote to delivery.</h2>
+        </div>
+        <p class="muted">
+          Frameshift PCs is built around clear communication, professional
+          assembly, clean cable work, and dependable post-sale support.
+        </p>
+      </div>
+      <div class="why-grid">
+        <article class="glass-card">
+          <div class="icon-box">01</div>
+          <h3>Professionally Assembled</h3>
+          <p class="muted">Parts are installed cleanly with careful routing, airflow, and upgrade space in mind.</p>
+        </article>
+        <article class="glass-card">
+          <div class="icon-box">02</div>
+          <h3>Stress Tested</h3>
+          <p class="muted">Systems are checked for stability, thermals, and real-world readiness before delivery.</p>
+        </article>
+        <article class="glass-card">
+          <div class="icon-box">03</div>
+          <h3>Supported After Sale</h3>
+          <p class="muted">Get help through Discord for setup questions, troubleshooting, and upgrade planning.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="reviews" class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Customer Reviews</div>
+          <h2>Built to earn trust.</h2>
+        </div>
+        <a class="button primary" href="https://www.trustpilot.com/review/mkanker770-lgtm.github.io" target="_blank" rel="noopener">Write a Trustpilot Review</a>
+      </div>
+      <div class="review-layout">
+        <article class="review-card">
+          <strong>Don</strong>
+          <div class="stars" aria-label="5 out of 5 stars">
+            <span>*</span><span>*</span><span>*</span><span>*</span><span>*</span>
           </div>
-          <a class="button primary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Open Discord</a>
+          <h3>Fast and Reliable!</h3>
+          <p class="quote">
+            Ordered a custom PC through Frameshift on Discord and it arrived
+            super fast! Build was perfect and ready to go right out of the box.
+            Highly recommend for anyone wanting a quick, smooth experience.
+          </p>
+          <div class="review-meta">
+            <span class="pill">June 4, 2026</span>
+            <span class="pill">Trustpilot review</span>
+            <span class="pill">Custom PC order</span>
+          </div>
+        </article>
+        <aside class="showcase">
+          <div class="showcase-card">
+            <h3>Review after delivery</h3>
+            <p class="muted">Customers order through Discord, receive their system, then use Trustpilot to leave public feedback.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Build Process</div>
+          <h2>Simple, premium, transparent.</h2>
         </div>
-        <div class="grid-3">
-          <article class="card card-pad">
-            <h3>1. Budget</h3>
-            <p class="muted">Tell us your max spend and whether that includes monitor, keyboard, mouse, or shipping.</p>
-          </article>
-          <article class="card card-pad">
-            <h3>2. Games</h3>
-            <p class="muted">List your main games and target resolution: 1080p, 1440p, or 4K.</p>
-          </article>
-          <article class="card card-pad">
-            <h3>3. Style</h3>
-            <p class="muted">Tell us black/white case, RGB level, quiet build, glass side panel, or a specific theme.</p>
-          </article>
+      </div>
+      <div class="process-grid">
+        <article class="glass-card">
+          <div class="icon-box">1</div>
+          <h3>Consultation</h3>
+          <p class="muted">Share your budget, games, resolution, aesthetic, shipping needs, and deadline.</p>
+        </article>
+        <article class="glass-card">
+          <div class="icon-box">2</div>
+          <h3>Quote and Build</h3>
+          <p class="muted">We confirm the parts list, take payment, assemble the PC, and test it properly.</p>
+        </article>
+        <article class="glass-card">
+          <div class="icon-box">3</div>
+          <h3>Delivery and Support</h3>
+          <p class="muted">Your system arrives ready to use with support available after delivery.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="faq" class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">FAQ</div>
+          <h2>Questions buyers ask first.</h2>
         </div>
-        <div class="panel card-pad" style="margin-top: 14px;">
+      </div>
+      <div class="faq-grid">
+        <article class="faq-item">
+          <h3>Are prices final?</h3>
+          <p class="muted">No. Listed prices are starting points. Your Discord quote confirms the final total based on parts and shipping.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Do you offer warranty?</h3>
+          <p class="muted">Yes. Warranty and support terms are included with the quote so buyers know what is covered.</p>
+        </article>
+        <article class="faq-item">
+          <h3>Can I request a theme?</h3>
+          <p class="muted">Yes. Black, white, RGB, stealth, creator, showcase, and budget-focused builds can all be discussed.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="order" class="wrap">
+      <div class="community">
+        <div>
+          <div class="eyebrow">Discord Community</div>
+          <h2>Start your quote in Discord.</h2>
+          <p class="lead">
+            Send your budget, main games, target resolution, color theme, and
+            deadline. We will help you choose the right tier and parts list.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="https://discord.gg/PqZz6Qrdr" target="_blank" rel="noopener">Join Discord</a>
+            <a class="button secondary" href="https://www.trustpilot.com/review/mkanker770-lgtm.github.io" target="_blank" rel="noopener">Review Us</a>
+          </div>
+        </div>
+        <div class="glass-card">
           <h3>Copy this into Discord</h3>
-          <p class="muted">Budget: $____ | Games: ____ | Resolution: ____ | Wi-Fi needed: yes/no | Color/theme: ____ | Deadline: ____</p>
+          <p class="muted">
+            Budget: $____<br>
+            Games: ____<br>
+            Resolution: 1080p / 1440p / 4K<br>
+            Theme: ____<br>
+            Wi-Fi needed: yes / no<br>
+            Deadline: ____
+          </p>
         </div>
-      </section>
-    </main>
-  </div>
+      </div>
+    </section>
+  </main>
 
-  <script>
-    const views = [...document.querySelectorAll("[data-view]")];
-    const tabs = [...document.querySelectorAll("[data-tab]")];
-    const validTabs = new Set(views.map((view) => view.dataset.view));
-
-    function setTab(nextTab) {
-      const tab = validTabs.has(nextTab) ? nextTab : "home";
-      views.forEach((view) => view.classList.toggle("active", view.dataset.view === tab));
-      tabs.forEach((link) => link.classList.toggle("active", link.dataset.tab === tab));
-      if (location.hash.slice(1) !== tab) {
-        history.replaceState(null, "", `#${tab}`);
-      }
-      window.scrollTo(0, 0);
-    }
-
-    tabs.forEach((link) => {
-      link.addEventListener("click", (event) => {
-        const tab = link.dataset.tab;
-        if (!tab) return;
-        event.preventDefault();
-        setTab(tab);
-      });
-    });
-
-    window.addEventListener("hashchange", () => setTab(location.hash.slice(1)));
-    setTab(location.hash.slice(1) || "home");
-  </script>
+  <footer>
+    <div class="wrap">Frameshift PCs - Premium custom gaming PCs. Build photos are style previews.</div>
+  </footer>
 </body>
 </html>
