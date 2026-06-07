@@ -17,15 +17,16 @@
       theme: {
         extend: {
           colors: {
-            ink: "#f8fbff",
-            line: "rgba(255,255,255,0.12)",
-            electric: "#38c8ff",
-            violet: "#9f67ff",
+            ink: "#f9fafb",
+            line: "rgba(148,163,184,0.20)",
+            electric: "#22d3ee",
+            violet: "#8b5cf6",
+            mint: "#34d399",
             trust: "#00b67a"
           },
           boxShadow: {
-            glow: "0 22px 70px rgba(56,200,255,0.18)",
-            premium: "0 30px 120px rgba(0,0,0,0.46)"
+            glow: "0 18px 58px rgba(34,211,238,0.16)",
+            premium: "0 24px 90px rgba(0,0,0,0.38)"
           }
         }
       }
@@ -35,9 +36,9 @@
     html, body, #root { height: 100%; overflow: hidden; }
     body {
       background:
-        radial-gradient(circle at 16% 4%, rgba(56,200,255,.22), transparent 32rem),
-        radial-gradient(circle at 86% 8%, rgba(159,103,255,.28), transparent 34rem),
-        linear-gradient(180deg, #070911 0%, #05060a 100%);
+        radial-gradient(circle at 14% 2%, rgba(34,211,238,.18), transparent 30rem),
+        radial-gradient(circle at 88% 6%, rgba(139,92,246,.22), transparent 34rem),
+        linear-gradient(180deg, #09090b 0%, #020617 100%);
     }
     body::before {
       content: "";
@@ -48,13 +49,18 @@
       background-image:
         linear-gradient(rgba(255,255,255,.034) 1px, transparent 1px),
         linear-gradient(90deg, rgba(255,255,255,.034) 1px, transparent 1px);
-      background-size: 54px 54px;
+      background-size: 48px 48px;
       mask-image: linear-gradient(to bottom, rgba(0,0,0,.75), transparent 76%);
     }
     .glass {
-      border: 1px solid rgba(255,255,255,.12);
-      background: linear-gradient(180deg, rgba(255,255,255,.095), rgba(255,255,255,.045));
+      border: 1px solid rgba(148,163,184,.20);
+      background: linear-gradient(180deg, rgba(15,23,42,.82), rgba(2,6,23,.72));
       backdrop-filter: blur(22px);
+    }
+    .mantine-panel {
+      border: 1px solid rgba(148,163,184,.18);
+      background: rgba(15,23,42,.62);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
     }
     .view-enter {
       animation: viewEnter .34s ease both;
@@ -102,12 +108,12 @@
 
     function Button({ children, href, onClick, variant = "primary" }) {
       const classes = variant === "primary"
-        ? "bg-gradient-to-br from-white via-electric to-violet text-slate-950 shadow-glow"
-        : "border border-line bg-white/10 text-white hover:bg-white/15";
+        ? "bg-white text-slate-950 shadow-glow hover:bg-cyan-100"
+        : "border border-line bg-slate-950/50 text-white hover:bg-slate-800";
       return href ? (
-        <a href={href} onClick={onClick} className={`inline-flex min-h-12 items-center justify-center rounded-xl px-5 text-sm font-black transition hover:-translate-y-0.5 ${classes}`}>{children}</a>
+        <a href={href} onClick={onClick} className={`inline-flex min-h-11 items-center justify-center rounded-lg px-5 text-sm font-black transition hover:-translate-y-0.5 ${classes}`}>{children}</a>
       ) : (
-        <button onClick={onClick} className={`inline-flex min-h-12 items-center justify-center rounded-xl px-5 text-sm font-black transition hover:-translate-y-0.5 ${classes}`}>{children}</button>
+        <button onClick={onClick} className={`inline-flex min-h-11 items-center justify-center rounded-lg px-5 text-sm font-black transition hover:-translate-y-0.5 ${classes}`}>{children}</button>
       );
     }
 
@@ -115,7 +121,7 @@
       return (
         <section className="view-enter view-scroll grid h-full min-h-0 gap-5 overflow-y-auto pb-28 pr-1 lg:grid-cols-[minmax(0,1fr)_390px] lg:pb-0">
           <div className="min-h-0 rounded-2xl">
-            <div className="mb-4 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">{eyebrow}</div>
+            <div className="mb-4 inline-flex rounded-full border border-line bg-slate-900/70 px-3 py-1.5 text-xs font-black uppercase tracking-[0.16em] text-cyan-200">{eyebrow}</div>
             <h1 className="max-w-5xl text-4xl font-black leading-[.92] tracking-normal md:text-6xl xl:text-7xl">{title}</h1>
             <div className="mt-6">{children}</div>
           </div>
@@ -126,7 +132,7 @@
 
     function BuildCard({ build }) {
       return (
-        <article className="glass group overflow-hidden rounded-2xl shadow-premium">
+        <article className="glass group overflow-hidden rounded-xl shadow-premium transition duration-300 hover:-translate-y-1 hover:border-cyan-300/40">
           <div className="aspect-[16/10] overflow-hidden bg-slate-950">
             <img src={build.image} alt={`${build.name} custom PC`} className="h-full w-full object-cover transition duration-500 group-hover:scale-105" />
           </div>
@@ -139,7 +145,7 @@
               <div className="text-xl font-black">{build.price}</div>
             </div>
             <div className="mt-4 grid gap-2 text-sm text-slate-300">
-              {build.specs.map((spec) => <div className="flex justify-between border-b border-white/10 pb-2" key={spec}><span>Spec</span><b className="text-white">{spec}</b></div>)}
+              {build.specs.map((spec) => <div className="flex justify-between border-b border-slate-700/60 pb-2" key={spec}><span>Spec</span><b className="text-white">{spec}</b></div>)}
             </div>
           </div>
         </article>
@@ -150,7 +156,7 @@
       return (
         <div className="view-enter view-scroll grid h-full min-h-0 items-center gap-8 overflow-y-auto pb-28 pr-1 lg:grid-cols-[.95fr_1.05fr] lg:pb-0">
           <div>
-            <div className="mb-5 inline-flex rounded-full border border-violet/40 bg-violet/15 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-violet-100">Premium custom systems</div>
+            <div className="mb-5 inline-flex rounded-full border border-line bg-slate-900/70 px-4 py-2 text-xs font-black uppercase tracking-[0.16em] text-cyan-100">Premium custom systems</div>
             <h1 className="max-w-4xl text-5xl font-black leading-[.86] tracking-normal md:text-7xl xl:text-8xl">Custom Gaming PCs Built For You</h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300">Professionally assembled, stress-tested, tuned, and supported. Frameshift PCs builds premium systems that arrive clean, stable, and ready for gaming or creative work.</p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -158,17 +164,17 @@
               <Button href={discordUrl} variant="secondary">Join Discord</Button>
             </div>
             <div className="mt-8 grid gap-3 sm:grid-cols-3">
-              {indicators.map(([title, copy]) => <div className="glass rounded-2xl p-4" key={title}><b>{title}</b><span className="mt-1 block text-sm text-slate-400">{copy}</span></div>)}
+              {indicators.map(([title, copy]) => <div className="glass rounded-xl p-4" key={title}><b>{title}</b><span className="mt-1 block text-sm text-slate-400">{copy}</span></div>)}
             </div>
             <div className="mt-5 flex flex-wrap gap-2">
-              {payments.map(([mark, label]) => <span className="inline-flex min-h-10 items-center gap-2 rounded-full border border-white/10 bg-white/10 px-3 text-sm font-bold text-slate-200" key={label}><span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-to-br from-electric to-violet text-xs font-black text-slate-950">{mark}</span>{label}</span>)}
+              {payments.map(([mark, label]) => <span className="inline-flex min-h-10 items-center gap-2 rounded-full border border-line bg-slate-900/70 px-3 text-sm font-bold text-slate-200" key={label}><span className="grid h-6 w-6 place-items-center rounded-full bg-white text-xs font-black text-slate-950">{mark}</span>{label}</span>)}
             </div>
           </div>
           <div className="relative hidden min-h-[520px] lg:block">
             <div className="absolute inset-8 rounded-full bg-violet/20 blur-3xl"></div>
-            <div className="floaty glass relative mx-auto max-w-[660px] overflow-hidden rounded-2xl shadow-premium">
+            <div className="floaty glass relative mx-auto max-w-[660px] overflow-hidden rounded-xl shadow-premium">
             <img className="aspect-[4/3] w-full object-cover" src="build-5070.png" alt="Premium custom gaming PC" />
-              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-4 rounded-2xl border border-white/15 bg-slate-950/75 p-4 backdrop-blur-2xl">
+              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-4 rounded-xl border border-line bg-slate-950/80 p-4 backdrop-blur-2xl">
                 <div><b className="block">Surge 5070</b><span className="text-sm text-slate-400">High-FPS 1440p platform</span></div>
                 <div className="text-2xl font-black">$600</div>
               </div>
@@ -183,7 +189,7 @@
         <PageShell
           eyebrow="Gaming PCs"
           title="Featured builds in clean performance tiers."
-          aside={<aside className="glass hidden rounded-2xl p-6 lg:block"><div className="mb-4 rounded-xl border border-white/10 bg-white/10 p-4"><div className="text-sm font-black uppercase tracking-[0.14em] text-cyan-200">Quote engine</div><div className="mt-2 text-3xl font-black">3 build lanes</div></div><h3 className="text-2xl font-black">Choose a tier, then customize.</h3><p className="mt-4 leading-7 text-slate-300">Start from 3060 Ti, 4060, or 5070. We tune the quote around your games, color theme, delivery, and payment method.</p><div className="mt-6"><Button onClick={() => setActive("Order")}>Build My Quote</Button></div></aside>}
+          aside={<aside className="glass hidden rounded-xl p-6 lg:block"><div className="mantine-panel mb-4 rounded-lg p-4"><div className="text-sm font-black uppercase tracking-[0.14em] text-cyan-200">Quote engine</div><div className="mt-2 text-3xl font-black">3 build lanes</div></div><h3 className="text-2xl font-black">Choose a tier, then customize.</h3><p className="mt-4 leading-7 text-slate-300">Start from 3060 Ti, 4060, or 5070. We tune the quote around your games, color theme, delivery, and payment method.</p><div className="mt-6"><Button onClick={() => setActive("Order")}>Build My Quote</Button></div></aside>}
         >
           <div className="grid gap-4 md:grid-cols-2 lg:max-h-[calc(100dvh-250px)] lg:overflow-y-auto lg:pr-1 xl:grid-cols-3">
             {builds.map((build) => <BuildCard build={build} key={build.name} />)}
@@ -202,10 +208,10 @@
         <PageShell
           eyebrow="Workstations"
           title="Performance systems for more than gaming."
-          aside={<aside className="glass rounded-2xl bg-[url('build-5070.png')] bg-cover bg-center p-6 shadow-premium"><div className="rounded-2xl border border-white/15 bg-slate-950/70 p-5 backdrop-blur-xl"><h3 className="text-2xl font-black">Surge 5070</h3><p className="mt-3 text-slate-300">High-FPS gaming, creator work, and heavy multitasking from $600.</p></div></aside>}
+          aside={<aside className="glass rounded-xl bg-[url('build-5070.png')] bg-cover bg-center p-6 shadow-premium"><div className="rounded-lg border border-line bg-slate-950/75 p-5 backdrop-blur-xl"><h3 className="text-2xl font-black">Surge 5070</h3><p className="mt-3 text-slate-300">High-FPS gaming, creator work, and heavy multitasking from $600.</p></div></aside>}
         >
           <div className="grid gap-4 md:grid-cols-3">
-            {cards.map(([title, copy], index) => <article className="glass rounded-2xl p-6" key={title}><div className="mb-5 grid h-12 w-12 place-items-center rounded-xl bg-gradient-to-br from-electric to-violet font-black text-slate-950">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-300">{copy}</p></article>)}
+            {cards.map(([title, copy], index) => <article className="glass rounded-xl p-6" key={title}><div className="mb-5 grid h-12 w-12 place-items-center rounded-lg bg-white font-black text-slate-950">0{index + 1}</div><h3 className="text-xl font-black">{title}</h3><p className="mt-3 leading-7 text-slate-300">{copy}</p></article>)}
           </div>
         </PageShell>
       );
@@ -216,9 +222,9 @@
         <PageShell
           eyebrow="Reviews"
           title="Trust signals that feel public and verifiable."
-          aside={<aside className="glass flex flex-col justify-between rounded-2xl p-6"><div><div className="text-2xl font-black text-trust">Trustpilot</div><h3 className="mt-4 text-3xl font-black">Already bought from us?</h3><p className="mt-4 leading-7 text-slate-300">Leave feedback after delivery so buyers can verify the Frameshift experience.</p></div><div className="mt-7 flex flex-wrap gap-3"><Button href={trustpilotUrl}>Write Review</Button><Button href={discordUrl} variant="secondary">Community</Button></div></aside>}
+          aside={<aside className="glass flex flex-col justify-between rounded-xl p-6"><div><div className="text-2xl font-black text-trust">Trustpilot</div><h3 className="mt-4 text-3xl font-black">Already bought from us?</h3><p className="mt-4 leading-7 text-slate-300">Leave feedback after delivery so buyers can verify the Frameshift experience.</p></div><div className="mt-7 flex flex-wrap gap-3"><Button href={trustpilotUrl}>Write Review</Button><Button href={discordUrl} variant="secondary">Community</Button></div></aside>}
         >
-          <article className="glass max-w-3xl rounded-2xl p-7 shadow-premium">
+          <article className="glass max-w-3xl rounded-xl p-7 shadow-premium">
             <b>Don</b>
             <div className="my-4 flex gap-1" aria-label="5 out of 5 rating">{Array.from({ length: 5 }).map((_, index) => <span className="grid h-8 w-8 place-items-center rounded bg-trust font-black" key={index}>*</span>)}</div>
             <h3 className="text-2xl font-black">Fast and Reliable!</h3>
@@ -291,15 +297,17 @@
 
       return (
         <div className="flex h-[100dvh] flex-col overflow-hidden">
-          <header className="shrink-0 border-b border-white/10 bg-slate-950/70 backdrop-blur-2xl">
+          <header className="shrink-0 border-b border-line bg-zinc-950/82 backdrop-blur-2xl">
             <nav className="mx-auto flex w-[min(1240px,calc(100%-32px))] flex-col gap-3 py-3 lg:min-h-20 lg:flex-row lg:items-center lg:justify-between">
               <div className="flex items-center justify-between gap-3">
                 <button onClick={() => setActive("Home")} className="flex items-center gap-3 text-left font-black">
-                  <img className="h-11 w-11 object-contain drop-shadow-[0_0_18px_rgba(159,103,255,.8)]" src="frameshift-logo.png" alt="Frameshift PCs logo" />
-                  <span>Frameshift PCs</span>
+                  <span className="grid h-11 w-11 place-items-center rounded-xl border border-line bg-slate-900/70">
+                    <img className="h-8 w-8 object-contain" src="frameshift-logo.png" alt="Frameshift PCs logo" />
+                  </span>
+                  <span>Frameshift <span className="text-slate-400">PCS</span></span>
                 </button>
                 <button
-                  className="inline-flex min-h-11 items-center rounded-xl border border-white/10 bg-white/10 px-4 text-sm font-black lg:hidden"
+                  className="inline-flex min-h-11 items-center rounded-lg border border-line bg-slate-900/70 px-4 text-sm font-black lg:hidden"
                   onClick={() => setMenuOpen((open) => !open)}
                   aria-expanded={menuOpen}
                   aria-controls="mobile-menu"
@@ -307,10 +315,10 @@
                   {menuOpen ? "Close" : "Menu"}
                 </button>
               </div>
-              <div className="hidden flex-wrap items-center gap-1 rounded-2xl border border-white/10 bg-white/5 p-1 text-sm font-bold text-slate-300 lg:flex" role="tablist" aria-label="Site pages">
+              <div className="mantine-panel hidden flex-wrap items-center gap-1 rounded-xl p-1 text-sm font-bold text-slate-300 lg:flex" role="tablist" aria-label="Site pages">
                 {navItems.map((item) => (
                   <button
-                    className={`rounded-xl px-3 py-2 transition ${active === item ? "bg-white text-slate-950" : "hover:bg-white/10 hover:text-white"}`}
+                    className={`rounded-lg px-3 py-2 transition ${active === item ? "bg-white text-slate-950 shadow-sm" : "hover:bg-slate-800 hover:text-white"}`}
                     onClick={() => setActive(item)}
                     role="tab"
                     aria-selected={active === item}
@@ -325,11 +333,11 @@
                 <Button href={discordUrl} variant="secondary">Join Discord</Button>
               </div>
               {menuOpen && (
-                <div id="mobile-menu" className="view-enter grid gap-2 rounded-2xl border border-white/10 bg-slate-950/95 p-3 shadow-premium lg:hidden" role="tablist" aria-label="Mobile site pages">
+                <div id="mobile-menu" className="view-enter mantine-panel grid gap-2 rounded-xl bg-zinc-950/95 p-3 shadow-premium lg:hidden" role="tablist" aria-label="Mobile site pages">
                   <div className="grid grid-cols-2 gap-2">
                     {navItems.map((item) => (
                       <button
-                        className={`min-h-11 rounded-xl px-3 text-left text-sm font-black transition ${active === item ? "bg-white text-slate-950" : "bg-white/10 text-slate-200"}`}
+                        className={`min-h-11 rounded-lg px-3 text-left text-sm font-black transition ${active === item ? "bg-white text-slate-950" : "bg-slate-900 text-slate-200"}`}
                         onClick={() => setActive(item)}
                         role="tab"
                         aria-selected={active === item}
